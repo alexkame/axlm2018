@@ -1,0 +1,49 @@
+<!-- {if $full_page} -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+
+<div class="list-div" id="listDiv" style="margin-bottom:30px;">
+<!-- {if $info.trade_amount}-->
+<table>
+	<tr>
+		<th style="padding-right:10px;text-align:right;">交易号</th>
+		<td>{$info.trade_sn}</td>
+	</tr>
+	<tr>
+		<th style="padding-right:10px;text-align:right;">统计时间</th>
+		<td>{$info.stime} - {$info.etime}</td>
+	</tr>
+	<tr>
+		<th style="padding-right:10px;text-align:right;">总交易额</th>
+		<td><b style="color:red;">{$info.trade_amount}</b></td>
+	</tr>
+	<tr>
+		<th style="padding-right:10px;text-align:right;">在线订单交易额</th>
+		<td><b>{$info.order_amount}</b> <span style="color:grey;">订单数：({$info.order_nums})</span><a href="?act=detail&t=order&id={$info.id}&trade_sn={$info.trade_sn}" style="margin-left:20px;color:orange;">查看统计订单</a></td>
+	</tr>
+	<tr>
+		<th style="padding-right:10px;text-align:right;">线下交易额</th>
+		<td><b>{$info.cash_amount}</b> <span style="color:grey;">线下交易数：({$info.cash_nums})</span><a href="?act=detail&t=cash&id={$info.id}&trade_sn={$info.trade_sn}" style="margin-left:20px;color:orange;">查看线下交易</a></td>
+	</tr>
+	<tr>
+		<th style="padding-right:10px;text-align:right;">返现总金额</th>
+		<td><b>{$info.trade_fanxian_amount}</b> <span style="color:grey;">返现比例：({$info.trade_fanxian_bili})</span></td>
+	</tr>
+	<tr>
+		<th style="padding-right:10px;text-align:right;">实际返现总金额</th>
+		<td><b style="color:red;">{$info.trade_fanxian_shiji_amount}</b></td>
+	</tr>
+	<tr>
+		<th style="padding-right:10px;text-align:right;">返现用户金额/人均</th>
+		<td><b>{$info.user_money}</b> <span style="color:grey;">符合返现用户：({$info.user_nums} 人) </span><a href="?act=detail&t=users&id={$info.id}&trade_sn={$info.trade_sn}" style="margin-left:20px;color:orange;">查看返现用户</a></td>
+	</tr>
+	
+</table>
+<!-- {else} -->
+目前没有现金交易
+<!-- {/if}-->
+</div>
+
+{include file="pagefooter.htm"}
+<!-- {/if} -->

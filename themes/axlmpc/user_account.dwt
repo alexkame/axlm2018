@@ -1,0 +1,521 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link rel="stylesheet" type="text/css" href="themes/axlmpc/css/user.css" />
+<script type="text/javascript" src="themes/axlmpc/js/jquery-1.9.1.min.js"></script>
+<style>
+	.newicon {
+		background: url(../images/new.png) no-repeat;
+		display: block;
+	}
+	i.fenhong{
+		width: 60px;
+		height: 52px;
+		background-position: 0px 0px;
+	}
+	i.jinqian{
+		/*
+		background: url(../images/user-center.png) no-repeat;
+		width: 32px;
+		height: 32px;
+		background-position: -50px -45px;
+		display:block;
+		margin-bottom:10px;
+		*/
+
+		width: 40px;
+		height: 40px;
+		background-position: -142px -98px;
+	}
+	i.fenhongbili{
+		width: 70px;
+		height: 50px;
+		background-position: -76px -140px;
+	}
+	
+	.price_format{
+		font-size: 16px;
+		margin: 0px 5px;
+		color: #E31939;
+		padding:10px;
+	}
+	.mar_top table td.price_format {
+		color: #E31939;
+	}
+</style>
+{insert_scripts files='jquery.json.js,transport.js,json2.js'}
+{* 包含脚本文件 *}
+{insert_scripts files='common.js,user.js?tx'}
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<div class="margin-w1210 clearfix"> <!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+  <div class="user-left"> <!-- #BeginLibraryItem "/library/user_info.lbi" --><!-- #EndLibraryItem --> <!-- #BeginLibraryItem "/library/user_menu.lbi" --><!-- #EndLibraryItem --> </div>
+  <div class="user-right">
+	<!-- {if $exec eq 'default'}-->
+			<!-- start 资金账户 --> 
+			<div class="box"> 
+			  <div class="tabmenu">
+				<ul class="tab pngFix">
+				  <li class="first active"><a>资金账户</a></li>
+				</ul>
+			  </div>
+			  <div class="mar_top">
+				<div class="box-inner"> 资金账户 <a href="account.php?act=detaillog" style="float:right;color:#E31939;">明细</a></div>
+				<table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#eee">
+				  <tr align="center">
+					<td bgcolor="#ffffff">现金币</td>
+					<td bgcolor="#ffffff">消费币</td>
+					<td bgcolor="#ffffff">爱心币</td>
+					<td bgcolor="#ffffff">积分币</td>
+					<td bgcolor="#ffffff">积分</td>
+				  </tr>
+				  <tr align="center">
+					<td bgcolor="#ffffff" style="height:50px;">{$pc_user.account_xianjinbi}</td>
+					<td bgcolor="#ffffff">{$pc_user.account_xiaofeibi}</td>
+					<td bgcolor="#ffffff">{$pc_user.account_aixinbi}</td>
+					<td bgcolor="#ffffff">{$pc_user.account_jifenbi}</td>
+					<td bgcolor="#ffffff">{$pc_user.account_jifen}</td>
+				  </tr>
+				</table>
+			  </div>
+			</div>
+			<!-- end 资金账户 --> 
+		  
+			<!-- 推广信息 -->
+		   <div class="box"> 
+			  <div class="tabmenu">
+				<ul class="tab pngFix">
+				  <li class="first active"><a>会员管理</a></li>
+				</ul>
+			  </div>
+			  <div class="mar_top">
+				<div class="box-inner">基本信息 </div>
+				<table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#eee">
+				  <tr align="center">
+					<td bgcolor="#ffffff">会员管理</td>
+					<td bgcolor="#ffffff" class="price_format">
+					<a href="account.php?act=show_expend_users" style="margin-left:10px;margin-top:10px;">[查看]</a></td>
+				  </tr>
+				</table>
+			  </div>
+			</div>
+		   <!-- end 我的推广 -->
+		   <!-- start 我的分红 --> 
+		   <div class="box"> 
+			  <div class="tabmenu">
+				<ul class="tab pngFix">
+				  <li class="first active"><a>我的分红</a></li>
+				</ul>
+			  </div>
+			  <div class="mar_top">
+				<div class="box-inner"> 基本信息 <a href="account.php?act=detaillog&type=fenhonglog" style="float:right;color:#E31939;">分红记录</a></div>
+				<table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#eee">
+				  <tr align="center">
+					<td bgcolor="#ffffff">昨日分红 {$pc_user.fenhong_date}</td>
+					<td bgcolor="#ffffff" class="price_format"> ￥{$pc_user.fenhong_amount}</td>
+				  </tr>
+				  <tr align="center">
+					<td bgcolor="#ffffff">总分红</td>
+					<td bgcolor="#ffffff" class="price_format">￥{$pc_user.account_fenhong_amount}</td>
+				  </tr>
+				</table>
+			  </div>
+			</div>
+		   <!-- end 我的分红 -->
+		   <div class="box"> 
+				<div class="mar_top">
+					<a href="user.php?act=account_raply" class="main-btn main-btn-large">申请提现</a>
+				</div>
+			</div>
+		   <!-- //使用原来的提现管理
+		    <div class="box"> 
+				<div class="tabmenu">
+					<ul class="tab pngFix">
+					  <li class="first active"><a>提现中心</a></li>
+					</ul>
+				</div>
+				<div class="mar_top">
+					<div class="box-inner"> 
+						<a href="user.php?act=fenxiao&exec=tixian" class="main-btn main-btn-large">申请提现</a>
+						<a href="user.php?act=fenxiao&exec=tixian_list" style="float:right;color:#E31939;">更多提现记录</a>
+					</div>
+					<table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#eee">
+						<tr align="center">
+							<td bgcolor="#ffffff">ID</td>
+							<td bgcolor="#ffffff">提现金额</td>
+							<td bgcolor="#ffffff">手续费</td>
+							<td bgcolor="#ffffff">申请时间</td>
+							<td bgcolor="#ffffff">状态</td>
+						</tr>
+						 <!-- {foreach from=$tixianlist5 key=level item=val name=fx} -->
+						<tr align="center">
+							<td bgcolor="#ffffff">{$val.id}</td>
+							<td bgcolor="#ffffff">{$val.money}</td>
+							<td bgcolor="#ffffff">{$val.shouxufei}</td>
+							<td bgcolor="#ffffff">{$val.ctime}</td>
+							<td bgcolor="#ffffff">{$val.status}</td>
+						</tr>
+						<!-- {/foreach} -->
+						
+					</tbody>
+				</table>
+				</div>
+			</div>
+			-->
+		   
+   <!-- {/if} -->
+   <!-- {if $exec eq 'zhuanzhang'}-->
+			<div class="box"> 
+			  <div class="tabmenu">
+				<ul class="tab pngFix">
+				  <li class="first active"><a>转账</a></li>
+				</ul>
+			  </div>
+			  <div class="mar_top">
+			  <div id="find-box" class="uc_box">
+				<!-- {if $step eq 'default'} -->
+					<form action="account.php" method="post" id="fpForm" name="fpForm">
+						  <div id="error_container"><!--{if $msg neq ''}-->{$msg}<!-- {/if} --></div>
+						  <div class="item">
+							<label class="con_un">请输入二级支付密码：</label>
+							<input type="password" id="pwd2" name="pwd2" class="text"  autocomplete="off"  />
+						  </div>
+						  <div class="item">
+							<label class="con_un">&nbsp;</label>
+							<input type="hidden" name="act" value="zhuanzhang" />
+							<input type="hidden" name="step" value="checkpwd" />
+							<input type="hidden" name="touser" value="{$touser}" />
+							<input type="submit" name="button" id="btn_submit" class="main-btn main-btn-large" value="提交" />
+						  </div>
+					</form>
+				<!-- {elseif $step eq 'zhuanzhang'} -->
+					<form action="account.php" method="post" id="fpForm" name="fpForm">
+						  <div id="error_container"><!--{if $msg neq ''}-->{$msg}<!-- {/if} --></div>
+						  <div class="item">
+							<label class="con_un">转给：</label>
+							<input type="text" id="touser" name="touser" value="{$tousername}" class="text"  autocomplete="off" placeholder="请输入用户名"  />
+						  </div>
+						  <div class="item">
+							<label class="con_un">转账金额：</label>
+							<input type="text" id="amount" name="amount" value="" class="text"  autocomplete="off"  />
+						  </div>
+						  <div class="item">
+							<label class="con_un">&nbsp;</label>
+							<input type="hidden" name="act" value="zhuanzhang" />
+							<input type="hidden" name="step" value="zhuanzhang" />
+							
+							<input type="submit" name="button" id="btn_submit" class="main-btn main-btn-large" value="提交" />
+						  </div>
+					</form>
+				<!-- {elseif $step eq 'success'} -->
+						
+						 <div id="find-box" class="uc_box">
+							<div class="find_box_end">
+									<p>转账成功</p>
+									<p class="on_go"> <a href="user.php" title="" class="back">返回用户中心&gt;&gt;</a> </p>
+							</div>
+						</div>
+				<!-- {/if} -->
+				</div>
+			  </div>
+			</div>
+   <!-- {/if} -->
+<!-- {if $exec eq 'zhuanzhanglog'}-->
+			<div class="box"> 
+			  <div class="tabmenu">
+				<ul class="tab pngFix">
+				  <li class="first active"><a>转账记录</a></li>
+				</ul>
+			  </div>
+			  <div class="mar_top">
+				<a href="account.php?act=show_expend_users" class="main-btn main-btn-large">返回</a>
+				<a href="account.php?act=zhuanzhang" style="float:right;color:#ed6803;">转账</a>
+				
+				<table width="100%" style="margin-top:15px;" border="0" cellpadding="5" cellspacing="1" bgcolor="#eee">
+				  <tr align="center">
+					<td bgcolor="#ffffff">ID</td>
+					<td bgcolor="#ffffff">转给用户ID</td>
+					<td bgcolor="#ffffff">转给用户</td>
+					<td bgcolor="#ffffff">金额</td>
+					<td bgcolor="#ffffff">时间</td>
+				  </tr>
+				   <!-- {foreach from=$list key=k item=val} -->
+				  <tr align="center">
+					<td bgcolor="#ffffff">{$val.id}</td>
+					<td bgcolor="#ffffff">{$val.from_uid}</td>
+					<td bgcolor="#ffffff">{$val.user_name}</td>
+					<td bgcolor="#ffffff">{$val.amount}</td>
+					<td bgcolor="#ffffff">
+						{$val.time_format}
+					</td>
+				  </tr>
+					<!-- {/foreach} -->
+				</table>
+			  </div>
+			</div>
+   <!-- {/if} -->
+   <!-- {if $exec eq 'show_expend_users'}-->
+			<div class="box"> 
+			  <div class="tabmenu">
+				<ul class="tab pngFix">
+				  <li class="first active"><a>我推广的用户</a></li>
+				</ul>
+			  </div>
+			  <div class="mar_top">
+				<a href="account.php?act=zhuanzhang&touser=" class="main-btn main-btn-large">转账给其他人</a>
+				<a href="account.php?act=zhuanzhanglog" style="float:right;color:#ed6803;">转账记录</a>
+				<div style="margin:10px 0px;text-align:right;">
+                                <form action="account.php" method="get">
+                                    用户名：<input type="text" style="" name="search_uname" value="{$search_uname}" placeholder="用户名"/>
+                                    时间：<input type="text" name="stime" value="{$stime}" placeholder="格式 xxxx-xx-xx" /> - <input type="text" name="etime" value="{$etime}" placeholder="格式 xxxx-xx-xx"/>
+                                    <input type="hidden" name="act" value="show_expend_users" />
+                                    <input type="submit" name="submit" class="main-btn main-btn-small" value="查询" />
+                                </form>
+                                </div>
+				<table width="100%" style="margin-top:15px;" border="0" cellpadding="5" cellspacing="1" bgcolor="#eee">
+				  <tr align="center">
+					<td bgcolor="#ffffff">用户ID</td>
+					<td bgcolor="#ffffff">用户名</td>
+					<td bgcolor="#ffffff">所属层</td>
+					<td bgcolor="#ffffff">区域</td>
+					<td bgcolor="#ffffff">角色</td>
+					<td bgcolor="#ffffff">身份</td>
+					<td bgcolor="#ffffff">等级</td>
+					<td bgcolor="#ffffff">接点人</td>
+					<td bgcolor="#ffffff">注册时间</td>
+					<!--<td bgcolor="#ffffff">操作</td>-->
+				  </tr>
+				   <!-- {foreach from=$userlist key=k item=val} -->
+				  <tr align="center">
+					<td bgcolor="#ffffff">{$val.uid}</td>
+					<td bgcolor="#ffffff">{$val.user_name}</td>
+					<td bgcolor="#ffffff">{$val.ceng}</td>
+					<td bgcolor="#ffffff">
+					<!-- {if $val.leftright eq 'left'} -->
+					左区
+					<!--{elseif $val.leftright eq 'right'}-->
+					右区
+					<!--{/if}-->
+					</td>
+                                        <td bgcolor="#ffffff">
+						{$val.role}
+					</td>
+                                        <td bgcolor="#ffffff">
+						{$val.identity}
+					</td>
+                                        <td bgcolor="#ffffff">
+						{$val.level}
+					</td>
+                                        <td bgcolor="#ffffff">
+						{$val.jiedianren_uname}
+					</td>
+					<td bgcolor="#ffffff">
+						{$val.reg_time_format}
+					</td>
+					<!--
+                                        <td bgcolor="#ffffff">
+						<a href="account.php?act=zhuanzhang&touser={$val.uid}" class="main-btn main-btn-large">转账</a>
+					</td>
+                                        -->
+				  </tr>
+					<!-- {/foreach} -->
+				</table>
+			  </div>
+			</div>
+   <!-- {/if} -->
+   <!-- {if $exec eq 'tixian'}-->
+			<div class="box"> 
+			  <div class="tabmenu">
+				<ul class="tab pngFix">
+				  <li class="first active"><a>申请提现</a></li>
+				</ul>
+			  </div>
+			  <div class="mar_top">
+				
+				<form name="formEdit" action="user.php" method="post" onsubmit="return subtx({$fenxiao.tixian_limit},{$fenxiao.tixian_shouxufei},{$baseinfo.expend_amount})">
+                <table width="100%" border="0" cellpadding="10" cellspacing="1" bgcolor="#eee">
+                    <tbody>
+					<tr>
+                      <td width="35%" align="right">提现金额：</td>
+                      <td width="65%" align="left">
+                      	<input type="text" name="tixian_money" value="0" onblur="tixian_check('tixian_money_ts',this.value,{$fenxiao.tixian_limit},{$fenxiao.tixian_shouxufei},{$baseinfo.expend_amount});" size="25" class="inputBg" style="ime-mode:disabled">
+                        <span id="tixian_money_ts" style="color:#E31939">每次提现金额不能低于100元</span>
+                      </td>
+                    </tr>
+                    
+                    <tr>
+                      <td align="right">提现方式：</td>
+                      <td align="left">
+                        <label>
+                          <input type="radio" name="tixian_type" value="zhifubao" checked="checked">
+                          支付宝&nbsp;&nbsp; </label>
+                       </td>
+                    </tr>
+					<tr>
+                      <td width="35%" align="right">提现账号：</td>
+                      <td width="65%" align="left">
+                      	<input type="text" name="tixian_account" value="" placeholder="提现账户" onblur="check_not_null_field('tixian_account_ts','提现账号',this.value)" size="25" class="inputBg" style="ime-mode:disabled">
+                        <span id="tixian_account_ts" style="color:#E31939">请确保填入正确的账号，否则会造成提现失败！</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      	<td colspan="2" align="center">
+                        	<label class="submit-border">
+                          		<input name="act" type="hidden" value="fenxiao">
+                          		<input name="exec" type="hidden" value="tixian">
+                          		<input name="submit" type="submit" class="main-btn main-btn-large" value="提交申请">
+                        	</label>
+                        </td>
+                    </tr>
+                </tbody></table>
+              </form>
+			  </div>
+			</div>
+   <!-- {/if} -->
+    <!-- {if $exec eq 'account_log'}-->
+			<div class="box"> 
+			  <div class="tabmenu">
+				<ul class="tab pngFix">
+				  <li class="first active"><a>提现记录</a></li>
+				</ul>
+			  </div>
+			  <div class="mar_top">
+				
+				<table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#eee">
+						<tr align="center">
+							<td bgcolor="#ffffff">ID</td>
+							<td bgcolor="#ffffff">提现金额</td>
+							<td bgcolor="#ffffff">到账金额</td>
+							<td bgcolor="#ffffff">申请时间</td>
+							<td bgcolor="#ffffff">备注</td>
+							<td bgcolor="#ffffff">状态</td>
+						</tr>
+						 <!-- {foreach from=$tixianlist key=level item=val name=fx} -->
+						<tr align="center">
+							<td bgcolor="#ffffff">{$val.id}</td>
+							<td bgcolor="#ffffff">{$val.money}</td>
+							<td bgcolor="#ffffff">{$val.daozhang_money}</td>
+							<td bgcolor="#ffffff">{$val.ctime}</td>
+							<td bgcolor="#ffffff">{$val.note}</td>
+							<td bgcolor="#ffffff">
+								<!-- {if $val.status eq ''} -->未审核
+								<!-- {elseif $val.status eq 'success'} -->提现成功
+								<!-- {elseif $val.status eq 'fail'} -->提现失败
+								<!-- {elseif $val.status eq 'error'} -->信息有误
+								<!-- {elseif $val.status eq 'decline'} -->提现被拒
+								<!-- {/if} -->
+							</td>
+						</tr>
+						<!-- {/foreach} -->
+						
+						<tr>
+							<td colspan="8" align="left">
+								<a href="user.php?act=account_raply" class="main-btn main-btn-large">申请提现</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			  </div>
+			</div>
+   <!-- {/if} -->
+   <!-- {if $exec eq 'bonus_list'}-->
+			<div class="box"> 
+			  <div class="tabmenu">
+				<ul class="tab pngFix">
+				  <li class="first active"><a>分红记录</a></li>
+				</ul>
+			  </div>
+			  <div class="mar_top">
+				
+				<table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#eee">
+						<tr align="center">
+							<td bgcolor="#ffffff">记录ID</td>
+							<td bgcolor="#ffffff">当前分红等级</td>
+							<td bgcolor="#ffffff">分红</td>
+							<td bgcolor="#ffffff">分红时间</td>
+						</tr>
+						 <!-- {foreach from=$bonuslist key=level item=val name=fx} -->
+						<tr align="center">
+							<td bgcolor="#ffffff">{$val.id}</td>
+							<td bgcolor="#ffffff">{$val.user_bonus_level}</td>
+							<td bgcolor="#ffffff">{$val.bonus_money}</td>
+							<td bgcolor="#ffffff">{$val.ctime}</td>
+						</tr>
+						<!-- {/foreach} -->
+						
+					</tbody>
+				</table>
+			  </div>
+			</div>
+   <!-- {/if} -->
+   
+   <!-- {if $exec eq 'detaillog'}-->
+			<div class="box"> 
+			  <div class="tabmenu">
+				<ul class="tab pngFix">
+				  <li class="first active"><a>明细记录</a></li>
+				</ul>
+			  </div>
+			  <div class="mar_top">
+				
+				<table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#eee">
+						<tr align="center">
+							<td bgcolor="#ffffff">记录ID</td>
+							<td bgcolor="#ffffff">币种</td>
+							<td bgcolor="#ffffff">变动</td>
+							<td bgcolor="#ffffff">备注</td>
+							<td bgcolor="#ffffff">时间</td>
+						</tr>
+						 <!-- {foreach from=$detaillog item=val} -->
+						<tr align="center">
+							<td bgcolor="#ffffff">{$val.id}</td>
+							<td bgcolor="#ffffff">{$val.type}</td>
+							<td bgcolor="#ffffff">{$val.change_value}</td>
+							<td bgcolor="#ffffff">{$val.note}</td>
+							<td bgcolor="#ffffff">{$val.ctime}</td>
+						</tr>
+						<!-- {/foreach} -->
+						
+					</tbody>
+				</table>
+			  </div>
+			</div>
+   <!-- {/if} -->
+</div>
+
+<div class="pop-main pop-compare">
+  <div class="pop-header"> <span>温馨提示</span> <a class="pop-close" href="javascript:;" title="关闭"></a> </div>
+  <div class="pop-con"> <i class="pop-icon"></i>
+    <p class="pop-text" style="padding-top: 20px;">您确定要取消该订单吗？取消订单后，不能恢复。</p>
+    <div class="pop-btn"> <a href="javascript:;" class="main-bg-color sure-btn">确定</a><a class="cancel-btn">取消</a><span class="clear"></span></div>
+  </div>
+</div>
+<div class="pop-mask"></div>
+</div>
+<div class="site-footer">
+  <div class="footer-related" style="background:#fff;"> <!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem --> <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem --> </div>
+</div>
+</body>
+<script type="text/javascript">
+$(function(){
+	$('.cancel-order').click(function(){
+		$('.pop-mask').show();
+		$('.pop-compare').show().css({'top':($(window).height()-$('.pop-compare').height())/2});
+		$('.sure-btn').attr('href',$(this).prev('.none').attr('href'));
+		
+	})	
+})
+</script>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE>
+<html>
+<head>
+<title>明德爱心联盟</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="axlm" />
+<link href="themes/axlmpc/axlm_new/css/index.css" rel="stylesheet" type="text/css">
+<link href="themes/axlmpc/axlm_new/css/swiper.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="themes/axlmpc/css/68ecshop_common.css" />
+<link href="themes/axlmpc/axlm_new/css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="themes/axlmpc/axlm_new/css/da_slider.css" rel="stylesheet" type="text/css">
+<link href="themes/axlmpc/axlm_new/css/flexy-menu.css" rel="stylesheet" type="text/css">
+<link href="themes/axlmpc/axlm_new/css/style.css" rel="stylesheet" type="text/css">
+<link href="themes/axlmpc/axlm_new/css/style-my.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+{include file='library/user_header.lbi'}
+{include file='library/page_header_short.lbi'}
+    <section class="index-body">
+    	<!--banner start-->
+    	<div class="swiper-container index-swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="themes/axlmpc/axlm_new/images/axlm-banner1.jpg"></div>
+                <div class="swiper-slide"><img src="themes/axlmpc/axlm/images/banner_2.png"></div>
+                <div class="swiper-slide"><img src="themes/axlmpc/axlm/images/banner_3.png"></div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
+        <!--banner end-->
+        <div class="index-body-nav1">
+        	<div class="index-body-nav1-text">
+            	<div class="index-body-nav1-text-bt">
+                	贝壳肽海洋生物抗菌多肽妇洁凝胶
+                </div>
+                贝壳肽海洋生物抗菌多肽妇洁凝胶是有留学归国的十几位博士后同时也是在深圳“孔雀计划”首批科研人员，<br>海外高层次人才生物学博士后团队，在海洋贝类中提取出来的海洋生物抗菌多肽。
+            </div>
+            <div class="index-body-nav1-bt">
+            	孔雀计划
+            </div>
+            <img class="index-body-nav1-p-info1" src="themes/axlmpc/axlm_new/images/axlm-p-info.png">
+            <a href="goods.php?id=294"><img class="index-body-nav1-p-info2" src="themes/axlmpc/axlm_new/images/axlm-p-info2.png"></a>
+            <ul class="index-body-content index-body-nav1-p">
+                <!--{foreach from=$hot_goods item=g key=key}--> 
+                    <!--{if $key eq 0}-->
+                        <li class="index-body-nav1-p-lifirst"><a href="{$g.url}"><img src="{$g.thumb}"></a></li>
+                    <!--{elseif $key eq 1}-->
+                        <li><a href="{$g.url}"><img src="{$g.thumb}"></a></li>
+                    <!--{else}-->
+                    <!--{/if}-->
+                <!--{/foreach}-->
+                <li><a href="goods.php?id=294"><img src="themes/axlmpc/axlm_new/images/axlm-p3.jpg"></a></li>
+                <!--{foreach from=$new_goods item=g key=key}--> 
+                    <!--{if $key eq 0}-->
+                        <li><a href="{$g.url}"><img src="{$g.thumb}"></a></li>
+                    <!--{elseif $key eq 1}-->
+                        <li><a href="{$g.url}"><img src="{$g.thumb}"></a></li>
+                    <!--{else}-->
+                    <!--{/if}-->
+                <!--{/foreach}--> 
+<!--
+            	<li class="index-body-nav1-p-lifirst"><img src="themes/axlmpc/axlm_new/images/axlm-p1.jpg"></li>
+                <li><img src="themes/axlmpc/axlm_new/images/axlm-p2.jpg"></li>
+                <li><img src="themes/axlmpc/axlm_new/images/axlm-p3.jpg"></li>
+                <li><img src="themes/axlmpc/axlm_new/images/axlm-p4.jpg"></li>
+                <li><img src="themes/axlmpc/axlm_new/images/axlm-p1.jpg"></li>
+-->
+            </ul>
+            <div class="index-body-nav1-p-bt"><a href="goods.php?id=294" style="color:#fff;">海洋生物抗菌多肽妇洁凝胶</a></div>
+        </div>
+        <div class="index-body-nav2">
+        	<!--floor1 start-->
+                <!--{if isset($floor_goods_list[0])}-->
+        	<div class="index-body-content index-body-nav2-single index-body-nav2-single-1f">
+                    <div class="index-body-nav2-single-left">
+                            <div class="index-body-nav2-single-left-btk">
+                            <div class="index-body-nav2-single-left-floor">1F</div>
+                            <div class="index-body-nav2-single-left-bt">{$floor_goods_list[0].cat_name}</div>
+                            <a href="category.php?id={$floor_goods_list[0].cat_id}"><div class="index-body-nav2-single-left-more">MORE></div></a>
+                        </div>
+                        <ul>
+                        <!--{if $floor_goods_list[0].subCategory} -->
+                            <!--{foreach from=$floor_goods_list[0].subCategory item=c key=key}-->
+                                <!--{if $key eq 0}-->
+                                    <a href="category.php?id={$c.cat_id}"><li class="index-body-nav2-single-left-list-active">{$c.cat_name}</li></a>
+                                <!--{else}-->
+                                    <a href="category.php?id={$c.cat_id}"><li>{$c.cat_name}</li></a>
+                                <!--{/if}-->
+                            <!--{/foreach}-->
+                        <!--{/if}-->
+                        </ul>
+                    </div>
+                    <div class="index-body-nav2-single-p">
+                            <div class="index-body-nav2-single-p2k">
+                                <!--{if $floor_goods_list[0].goods_list}--> 
+                                <!--{foreach from=$floor_goods_list[0].goods_list item=c key=key}--> 
+                                    <!--{if $key neq 0}-->
+                                    <a href="goods.php?id={$c.id}">
+                                    <div class="index-body-nav2-single-p2">
+                                        <img src="{$c.original_img}">
+                                        <div class="index-body-nav2-single-p2-price">
+                                            RMB {$c.shop_price}
+                                            <div class="index-body-nav2-single-p2-price2">原价:{$c.market_price}</div>
+                                        </div>
+                                    </div>
+                                    </a>
+                                    <!--{/if}-->
+                                <!--{/foreach}-->
+                                <!--{/if}-->
+                            </div>
+                            <!--{if $floor_goods_list[0].goods_list}--> 
+                                <!--{foreach from=$floor_goods_list[0].goods_list item=c key=key}-->
+                                    <!--{if $key eq 0}-->
+                                    <a href="goods.php?id={$c.id}">
+                                        <div class="index-body-nav2-single-p1">
+                                            <img src="{$c.original_img}">
+                                            <div class="index-body-nav2-single-p1-info">
+                                                    <div class="index-body-nav2-single-p1-info-bt">{$c.name}</div>
+                                                <div class="index-body-nav2-single-p1-info-price">
+                                                    RMB {$c.shop_price}
+                                                    <span class="index-body-nav2-single-p1-info-price2">原价:{$c.market_price}</span>    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <!--{/if}-->
+                                <!--{/foreach}-->
+                            <!--{/if}-->
+                    </div>
+                </div>
+                <!--{/if}-->
+			<!--floor1 end-->
+			<!--floor2 start-->
+<!--{if isset($floor_goods_list[1])}-->
+        	<div class="index-body-content index-body-nav2-single index-body-nav2-single-2f">
+            	<div class="index-body-nav2-single-left">
+                	<div class="index-body-nav2-single-left-btk">
+                    	<div class="index-body-nav2-single-left-floor">2F</div>
+                        <div class="index-body-nav2-single-left-bt">{$floor_goods_list[1].cat_name}</div>
+                        <a href="category.php?id={$floor_goods_list[1].cat_id}"><div class="index-body-nav2-single-left-more">MORE></div></a>
+                    </div>
+                    <ul>
+                    	<!--{if $floor_goods_list[1].subCategory} -->
+                            <!--{foreach from=$floor_goods_list[1].subCategory item=c key=key}-->
+                                <!--{if $key eq 0}-->
+                                    <a href="category.php?id={$c.cat_id}"><li class="index-body-nav2-single-left-list-active">{$c.cat_name}</li></a>
+                                <!--{else}-->
+                                    <a href="category.php?id={$c.cat_id}"><li>{$c.cat_name}</li></a>
+                                <!--{/if}-->
+                            <!--{/foreach}-->
+                        <!--{/if}-->
+                    </ul>
+                </div>
+                <div class="index-body-nav2-single-p">
+                	<div class="index-body-nav2-single-p2k">
+                                <!--{if $floor_goods_list[1].goods_list}--> 
+                                <!--{foreach from=$floor_goods_list[1].goods_list item=c key=key}--> 
+                                    <!--{if $key neq 0}-->
+                                    <a href="goods.php?id={$c.id}">
+                                    <div class="index-body-nav2-single-p2">
+                                        <img src="{$c.original_img}">
+                                        <div class="index-body-nav2-single-p2-price">
+                                            RMB {$c.shop_price}
+                                            <div class="index-body-nav2-single-p2-price2">原价:{$c.market_price}</div>
+                                        </div>
+                                    </div>
+                                    </a>
+                                    <!--{/if}-->
+                                <!--{/foreach}-->
+                                <!--{/if}-->
+                        </div>
+                            <!--{if $floor_goods_list[1].goods_list}--> 
+                                <!--{foreach from=$floor_goods_list[1].goods_list item=c key=key}-->
+                                    <!--{if $key eq 0}-->
+                                    <a href="goods.php?id={$c.id}">
+                                        <div class="index-body-nav2-single-p1">
+                                            <img src="{$c.original_img}">
+                                            <div class="index-body-nav2-single-p1-info">
+                                                    <div class="index-body-nav2-single-p1-info-bt">{$c.name}</div>
+                                                <div class="index-body-nav2-single-p1-info-price">
+                                                    RMB {$c.shop_price}
+                                                    <span class="index-body-nav2-single-p1-info-price2">原价:{$c.market_price}</span>    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <!--{/if}-->
+                                <!--{/foreach}-->
+                            <!--{/if}-->
+                </div>
+            </div>
+<!--{/if}-->
+			<!--floor2 end-->
+			<!--floor3 start-->
+<!--{if isset($floor_goods_list[2])}-->
+        	<div class="index-body-content index-body-nav2-single index-body-nav2-single-3f">
+            	<div class="index-body-nav2-single-left">
+                	<div class="index-body-nav2-single-left-btk">
+                    	<div class="index-body-nav2-single-left-floor">3F</div>
+                        <div class="index-body-nav2-single-left-bt">{$floor_goods_list[2].cat_name}</div>
+                        <a href="category.php?id={$floor_goods_list[2].cat_id}"><div class="index-body-nav2-single-left-more">MORE></div></a>
+                    </div>
+                    <ul>
+                    	<!--{if $floor_goods_list[2].subCategory} -->
+                            <!--{foreach from=$floor_goods_list[2].subCategory item=c key=key}-->
+                                <!--{if $key eq 0}-->
+                                    <a href="category.php?id={$c.cat_id}"><li class="index-body-nav2-single-left-list-active">{$c.cat_name}</li></a>
+                                <!--{else}-->
+                                    <a href="category.php?id={$c.cat_id}"><li>{$c.cat_name}</li></a>
+                                <!--{/if}-->
+                            <!--{/foreach}-->
+                        <!--{/if}-->
+                    </ul>
+                </div>
+                <div class="index-body-nav2-single-p">
+                	<div class="index-body-nav2-single-p2k">
+                                <!--{if $floor_goods_list[2].goods_list}--> 
+                                <!--{foreach from=$floor_goods_list[2].goods_list item=c key=key}--> 
+                                    <!--{if $key neq 0}-->
+                                    <a href="goods.php?id={$c.id}">
+                                    <div class="index-body-nav2-single-p2">
+                                        <img src="{$c.original_img}">
+                                        <div class="index-body-nav2-single-p2-price">
+                                            RMB {$c.shop_price}
+                                            <div class="index-body-nav2-single-p2-price2">原价:{$c.market_price}</div>
+                                        </div>
+                                    </div>
+                                    </a>
+                                    <!--{/if}-->
+                                <!--{/foreach}-->
+                                <!--{/if}-->
+                    </div>
+                    <!--{if $floor_goods_list[2].goods_list}--> 
+                                <!--{foreach from=$floor_goods_list[2].goods_list item=c key=key}-->
+                                    <!--{if $key eq 0}-->
+                                    <a href="goods.php?id={$c.id}">
+                                        <div class="index-body-nav2-single-p1">
+                                            <img src="{$c.original_img}">
+                                            <div class="index-body-nav2-single-p1-info">
+                                                    <div class="index-body-nav2-single-p1-info-bt">{$c.name}</div>
+                                                <div class="index-body-nav2-single-p1-info-price">
+                                                    RMB {$c.shop_price}
+                                                    <span class="index-body-nav2-single-p1-info-price2">原价:{$c.market_price}</span>    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <!--{/if}-->
+                                <!--{/foreach}-->
+                            <!--{/if}-->
+                </div>
+            </div>
+<!--{/if}-->
+			<!--floor3 end-->
+			<!--floor4 start-->
+<!--{if $lianmengshangjia_list} -->
+        	<div class="index-body-content index-body-nav2-single index-body-nav2-single-4f">
+            	<div class="index-body-nav2-single-left">
+                	<div class="index-body-nav2-single-left-btk">
+                    	<div class="index-body-nav2-single-left-floor">4F</div>
+                        <div class="index-body-nav2-single-left-bt">联盟商家</div>
+                        <a href="stores.php"><div class="index-body-nav2-single-left-more">MORE></div></a>
+                    </div>
+                </div>
+                <div class="index-body-nav2-single-p">
+                	<div class="index-body-nav2-single-p2k">
+                        <!--{if $lianmengshangjia_list}--> 
+                                <!--{foreach from=$lianmengshangjia_list item=c key=key}--> 
+                                    <!--{if $key neq 0}-->
+                                    <a href="supplier.php?suppId={$c.supplier_id}">
+                                    <div class="index-body-nav2-single-p2">
+                                        <img src="{$c.logo}">
+                                        <div class="index-body-nav2-single-p2-price">
+                                            {$c.supplier_name}
+                                        </div>
+                                    </div>
+                                    </a>
+                                    <!--{/if}-->
+                                <!--{/foreach}-->
+                                <!--{/if}-->
+                    </div>
+                    <!--{if $lianmengshangjia_list}--> 
+                                <!--{foreach from=$lianmengshangjia_list item=c key=key}-->
+                                    <!--{if $key eq 0}-->
+                                    <a href="supplier.php?suppId={$c.supplier_id}">
+                                        <div class="index-body-nav2-single-p1">
+                                            <img src="{$c.logo}">
+                                            <div class="index-body-nav2-single-p1-info">
+                                                    <div class="index-body-nav2-single-p1-info-bt">{$c.supplier_name}</div>
+                                                <div class="index-body-nav2-single-p1-info-price">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <!--{/if}-->
+                                <!--{/foreach}-->
+                            <!--{/if}-->
+                </div>
+            </div>
+<!--{/if}-->
+			<!--floor4 end-->
+        </div>
+        
+        
+    </section>
+    <script src="themes/axlmpc/axlm_new/js/swiper.min.js"></script>
+    <script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+		autoplay:3000,
+		loop:true,
+		speed:1000,
+		autoplayDisableOnInteraction:false
+    });
+    </script>
+<div class="site-footer">
+  <div class="footer-related" style="background:#fff;padding-bottom:0px;"> 
+	<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem --> 
+  </div>
+</div>
+</body>
+</html>

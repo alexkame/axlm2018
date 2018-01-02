@@ -1,0 +1,65 @@
+<!-- {if $full_page} -->
+<!-- $Id: users_list.htm 15617 2009-02-18 05:18:00Z sunxiaodong $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+<div class="form-div">
+{$lang.page_note}{$lang.total_records}{$record_count}{$lang.how_many_user}
+</div>
+
+<form method="POST" action="" name="listForm">
+<input type="hidden" name="id" value="{$user_id}" />
+<!-- start users list -->
+<div class="list-div" id="listDiv">
+<!-- {/if} -->
+<!--用户列表部分-->
+<table cellpadding="3" cellspacing="1">
+  <tr>
+    <th>ID</th>
+    <th>会员名</th>
+    <th>分佣订单号</th>
+    <th>分佣日期</th>
+    <th>分佣金额</th>
+    <th>分佣比例</th>
+    <th>状态</th>
+  <tr>
+  {foreach from=$logdb item=d}
+  <tr>
+    <td>{$d.id}</td>
+    <td>{$d.user_name}</td>
+    <td>{$d.order_id}<a href="order.php?act=info&order_id={$d.order_id}">&nbsp;&nbsp;[查看]</a></td>
+    <td class="first-cell">{$d.ctime}</td>	
+    <td class="first-cell">{$d.expend_amount_format}</td>	
+    <td class="first-cell">{$d.expend_bili}</td>	
+    <td class="first-cell">{$d.status}</td>	
+  </tr>
+  {foreachelse}
+  <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
+  {/foreach}
+</table>
+ <table cellpadding="4" cellspacing="0">
+    <tr>
+      <td align="right">{include file="page.htm"}</td>
+    </tr>
+  </table>
+  <!-- {if $full_page} -->
+</div>
+</form>
+<script type="Text/Javascript" language="JavaScript">
+listTable.recordCount = {$record_count};
+listTable.pageCount = {$page_count};
+
+{foreach from=$filter item=item key=key}
+listTable.filter.{$key} = '{$item}';
+{/foreach}
+
+<!-- {literal} -->
+onload = function()
+{
+  // 开始检查订单
+  startCheckOrder();
+}
+<!-- {/literal} -->
+</script>
+{include file="pagefooter.htm"}
+<!-- {/if} -->

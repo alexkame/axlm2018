@@ -1,0 +1,149 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>{$page_title}</title>
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<link rel="stylesheet" type="text/css" href="themesmobile/68ecshopcom_mobile/css/public.css">
+<link rel="stylesheet" type="text/css" href="themesmobile/68ecshopcom_mobile/css/brand_list.css">
+<script type="text/javascript" src="themesmobile/68ecshopcom_mobile/js/jquery.js"></script>
+<script type="text/javascript" src="themesmobile/68ecshopcom_mobile/js/TouchSlide.1.1.js"></script>
+{insert_scripts files='common.js,utils.js'}
+</head>
+<body class="body_bj" style="background:#fff;">{insert name='add_url_uid'}
+<!-- 头部 start -->
+<header class="header">
+  <div class="tab_nav">
+      <div class="h-left"><a class="sb-back" href="javascript:history.back(-1)" title="返回"></a></div>
+      <div class="h-mid">{$info.name}</div>
+      <div class="h-right">
+        <aside class="top_bar">
+          <div onClick="show_menu();$('#close_btn').addClass('hid');" id="show_more"><a href="javascript:;"></a> </div>
+        </aside>
+      </div>
+  </div>
+</header>
+<!-- #BeginLibraryItem "/library/up_menu.lbi" --><!-- #EndLibraryItem --> <!--弹出菜单--> 
+<!--  头部 end --> 
+<!--头部广告--> 
+<!--
+<div class="brand_img">
+<img src="themesmobile/68ecshopcom_mobile/images/brand.jpg">
+</div>  
+-->
+<!---店招---->
+<div id="brand_like" class="brand_like">
+<div class="bd" style="padding:0px;width:100%;margin:0px;">
+<ul>
+	
+    {foreach from=$info.imgs item=img name=img_}
+    <li>
+    <!--<h2><span></span><a href="{$goods_brand.url}">{$img.name|escape:html}</a></h2>-->
+    <div class="like_img">
+		<img src="/data/shopsimgs/{$img}" style="width:100%;height:200px;"/>
+	</div>
+    </li>
+    {/foreach}
+    
+</ul>
+</div>
+<div class="hd">
+<ul></ul>
+</div>
+</div>
+<script type="text/javascript">
+				TouchSlide({ 
+					slideCell:"#brand_like",
+					titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+					mainCell:".bd ul", 
+					effect:"leftLoop", 
+					autoPage:true,//自动分页
+					autoPlay:true //自动播放
+				});
+				
+				function show_s_tab(_id,ele){
+					$('#s_tab li').css('color','grey');
+					$(ele).css('color', 'red');
+					$('#s_tab_content .s_div').hide();
+					$('#s_tab_content #'+_id).show();
+				}
+			</script>
+			<style>
+			#s_tab {
+				width:100%;
+			}
+			#s_tab_content {
+				width:100%;
+			}
+				#s_tab li {
+					width:30%;
+					float:left;
+					padding:10px 0px;
+					text-align:center;
+					color:grey;
+					font-size:1em;
+				}
+				
+				#s_product li{
+					margin-top:10px;
+					border-bottom:1px solid #ddd;
+				}
+			#s_product li p{ color:grey;}
+			</style>
+<!-- 商品品牌广告图片 end-->
+<div class="ccontainer">
+	<h4>商家：{$info.name}</h4>
+	<div style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;">
+	<ul id="s_tab">
+		<li onclick="show_s_tab('info',this)" style="color:red;">商家信息</li>
+		<li onclick="show_s_tab('product',this)">商家产品</li>
+		<li onclick="show_s_tab('desc',this)">商家介绍</li>
+	</ul>
+	<div style="clear:both;"></div>
+	</div>
+	<div id="s_tab_content">
+		<div id="info" class="s_div"> 
+			<ul>
+				<li><b>联系人：</b>{$info.username}</li>
+				<li><b>行业：</b>{$info.hangye}</li>
+				<li><b>地址：</b>{$info.address}</li>
+				<li><b>商家简介：</b>{$info.desc}</li>
+			</ul>
+		</div>
+		
+		<div id="product" class="s_div" style="display:none;">
+			<ul id="s_product">
+			{foreach from=$info.goods_list item="good"}
+				<li>
+				{if $good.goods_thumb}
+				<img src="/data/shops_goods_imgs/{$good.goods_thumb}" style="width:30%;float:left;margin-right:10px;margin-bottom:10px;">
+				{/if}
+				<h4>{$good.good_name}</h4>
+				<p>商品介绍：{$good.goods_desc}</p>
+				<div style="clear:both;"></div>
+				</li>
+			{/foreach}
+			</ul>
+		</div>
+		
+		<div id="desc" class="s_div" style="display:none;">
+			{$info.content}
+		</div>
+	</div>
+</div>
+
+<!---返回顶部-->
+<script>
+function goTop(){
+	$('html,body').animate({'scrollTop':0},600);
+}
+</script>
+<a href="javascript:goTop();" class="gotop"><img src="themesmobile/68ecshopcom_mobile/images/topup.png"></a> 
+<!--底部 footer -->
+<div style="height:12px; line-height:12px; clear:both;"></div>
+<footer> <!-- #BeginLibraryItem "/library/page_footer.lbi" --> <!-- #EndLibraryItem --> <!-- #BeginLibraryItem "/library/footer_nav.lbi" --> <!-- #EndLibraryItem --> </footer>
+</body>
+</html>

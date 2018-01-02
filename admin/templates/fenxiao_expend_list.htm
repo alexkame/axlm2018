@@ -1,0 +1,73 @@
+{if $full_page}
+<!-- $Id: users_list.htm 15617 2009-02-18 05:18:00Z sunxiaodong $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+<div class="form-div">
+{$lang.page_note}{$lang.total_records}{$record_count}{$lang.how_many_user}
+</div>
+
+<form method="POST" action="" name="listForm">
+
+<!-- start users list -->
+<div class="list-div" id="listDiv">
+{/if}
+<!--用户列表部分-->
+<table cellpadding="3" cellspacing="1">
+  <tr>
+    <th>ID</th>
+    <th>UserID</th>
+    <th>用户名</th>
+    <th>提现方式</th>
+    <th>提现金额</th> 
+    <th>实际到账</th> 
+    <th>手续费</th> 
+    <th>状态</th>
+    <th>申请时间</th>
+    <th>操作</th>
+  <tr>
+  {foreach from=$data.logdb item=d}
+  <tr>
+    <td>{$d.id}</td>
+    <td>{$d.user_id}</td>
+    <td>{$d.user_name}</td>
+    <td>{$d.type}</td>
+    <td>{$d.money}</td>
+    <td>{$d.shijidaozhang}</td>
+    <td>{$d.shouxufei}</td>
+    <td>{$d.status}</td>
+    <td>{$d.ctime}</td>
+    <td align="center">
+	<!-- {if $d.status eq '申请中'}-->
+      <a href="users.php?act=edit&id={$user.user_id}" title="{$lang.edit}">
+	  【<img src="images/icon_edit.gif" border="0" height="16" width="16" />确定分佣】
+	  </a>
+      <a href="javascript:confirm_redirect('{$lang.remove_confirm}', 'users.php?act=remove&id={$user.user_id}')" title="{$lang.remove}">
+	  【<img src="images/icon_drop.gif" border="0" height="16" width="16" />取消】
+	  </a>
+	<!-- {/if}--> 
+    </td>
+  </tr>
+  {foreachelse}
+  <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
+  {/foreach}
+</table>
+
+{if $full_page}
+</div>
+<!-- end users list -->
+</form>
+<script type="text/javascript" language="JavaScript">
+<!--
+{literal}
+onload = function()
+{
+    document.forms['searchForm'].elements['keyword'].focus();
+    // 开始检查订单
+    startCheckOrder();
+}
+//-->
+</script>
+{/literal}
+{include file="pagefooter.htm"}
+{/if}

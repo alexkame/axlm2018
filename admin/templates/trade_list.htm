@@ -1,0 +1,91 @@
+<!-- {if $full_page} -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+
+<div class="list-div" id="listDiv" style="margin-bottom:30px;">
+<a class='btn-red' href="?act=day">今日交易额</a>
+{if $is_finished eq '0'}<a class='btn-orange' href="?act=daytrade">执行今日返现</a>{/if}
+</div>
+
+
+<div class="form-div">
+{$lang.page_note}{$lang.total_records}{$record_count}{$lang.how_many_user}
+</div>
+
+<form method="POST" action="" name="listForm">
+
+<!-- start users list -->
+<div class="list-div" id="listDiv">
+<!-- {/if} -->
+<!--分红列表部分-->
+<table cellpadding="3" cellspacing="1">
+  <tr>
+    <th>ID</th>
+    <th>交易号</th>
+    <th>交易总额</th>
+    <th>应返现总额</th>
+    <th>返现比例</th>
+    <th>实际返现总额</th>
+	<!--
+	<th>订单交易额</th> 
+    <th>订单数</th> 
+    <th>现金交易额</th> 
+    <th>现金交易数</th> 
+	-->
+    <th>返现用户人数</th>
+    <th>人均返现金额</th> 
+    <th>开始时间</th>
+    <th>结束时间</th>
+    <th>操作</th>
+  <tr>
+  {foreach from=$list item=d}
+  <tr>
+    <td>{$d.id}</td>
+    <td>{$d.trade_sn}</td>
+    <td>{$d.trade_amount}</td>
+    <td>{$d.trade_fanxian_amount}</td>
+    <td>{$d.trade_fanxian_bili}</td>
+    <td>{$d.trade_fanxian_shiji_amount}</td>
+	<!--
+    <td>{$d.order_amount}</td>
+    <td>{$d.order_nums}</td>
+    <td>{$d.cash_amount}</td>
+    <td>{$d.cash_nums}</td>
+	-->
+    <td>{$d.user_nums}</td>
+    <td>{$d.user_money}</td>
+    <td>{$d.stime}</td>
+    <td>{$d.etime}</td>
+	<td><a class="btn-blue" href="?act=detail&id={$d.id}">查看</td>
+  </tr>
+  {foreachelse}
+  <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
+  {/foreach}
+</table>
+ <table cellpadding="4" cellspacing="0">
+    <tr>
+      <td align="right">{include file="page.htm"}</td>
+    </tr>
+  </table>
+  <!-- {if $full_page} -->
+</div>
+</form>
+<script type="Text/Javascript" language="JavaScript">
+listTable.recordCount = {$record_count};
+listTable.pageCount = {$page_count};
+
+{foreach from=$filter item=item key=key}
+listTable.filter.{$key} = '{$item}';
+{/foreach}
+
+<!-- {literal} -->
+onload = function()
+{
+  // 开始检查订单
+  startCheckOrder();
+}
+<!-- {/literal} -->
+</script>
+{include file="pagefooter.htm"}
+<!-- {/if} -->

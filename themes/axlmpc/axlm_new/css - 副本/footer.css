@@ -1,0 +1,35 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	margin:0;
+}
+.hy-footer{
+	width:100%; min-width:1903px;
+}
+.hy-footer-nav1{
+	width:100%; background-color:#d2d5de; text-align:center;
+}
+.hy-footer-nav1 ul{
+	width:750px; padding:20px 0; margin:0 auto; border-bottom:1px solid #bfc2cc;
+}
+.hy-footer-nav1 ul li{
+	width:150px; list-style:none; float:left; color:#4e525f; font-size:14px;
+}
+.hy-footer-copyright{
+	padding:20px; line-height:22px; font-size:12px; color:#4e525f;
+}
+.hy-blank{
+	margin-left:20px;
+}
+.hy-footer-nav2{
+	width:100%; background-color:#6e727e;
+}
+.hy-footer-nav2 ul{
+	padding:35px 0; margin:0 auto; width:620px;
+}
+.hy-footer-nav2 ul li{
+	color:#fff; list-style:none; float:left; padding:0 25px; font-size:14px; border-left:1px solid #9aa0af;
+}
+.hy-footer-nav2 ul li.hy-footer-nav2-lifirst{
+	border:none;
+}

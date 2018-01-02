@@ -1,0 +1,66 @@
+<!-- {if $full_page} -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+<div class="form-div">
+{$lang.page_note}{$lang.total_records}{$record_count}{$lang.how_many_user}
+</div>
+
+<form method="POST" action="" name="listForm">
+
+<!-- start users list -->
+<div class="list-div" id="listDiv">
+<!-- {/if} -->
+<!--分红列表部分-->
+<table cellpadding="3" cellspacing="1">
+  <tr>
+    <th>ID</th>
+    <th>收银员</th>
+    <th>会员卡</th>
+    <th>消费金额</th>
+    <th>时间</th>
+    <th>操作</th>
+  <tr>
+  {foreach from=$list item=d}
+  <tr>
+    <td>{$d.id}</td>
+    <td>{$d.shouyinyuan}</td>
+    <td>{$d.huiyuanka}</td>
+    <td>{$d.money}</td>
+    <td>{$d.ctime}</td>
+    <td>
+		{if $d.exec eq 1}
+		<a href="trade_cash_list.php?act=del&id={$d.id}">删除</a>
+		{/if}
+	</td>
+  </tr>
+  {foreachelse}
+  <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
+  {/foreach}
+</table>
+ <table cellpadding="4" cellspacing="0">
+    <tr>
+      <td align="right">{include file="page.htm"}</td>
+    </tr>
+  </table>
+  <!-- {if $full_page} -->
+</div>
+</form>
+<script type="Text/Javascript" language="JavaScript">
+listTable.recordCount = {$record_count};
+listTable.pageCount = {$page_count};
+
+{foreach from=$filter item=item key=key}
+listTable.filter.{$key} = '{$item}';
+{/foreach}
+
+<!-- {literal} -->
+onload = function()
+{
+  // 开始检查订单
+  startCheckOrder();
+}
+<!-- {/literal} -->
+</script>
+{include file="pagefooter.htm"}
+<!-- {/if} -->

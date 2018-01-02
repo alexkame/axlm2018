@@ -1,0 +1,59 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>在线收银记录</title>
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<link rel="stylesheet" type="text/css" href="themesmobile/68ecshopcom_mobile/css/public.css"/>
+<link rel="stylesheet" type="text/css" href="themesmobile/68ecshopcom_mobile/css/user.css?v=11"/> 
+<script type="text/javascript" src="themesmobile/68ecshopcom_mobile/js/jquery.js"></script>
+<script type="text/javascript" src="themesmobile/68ecshopcom_mobile/js/jquery.more.js"></script>
+{insert_scripts files='jquery.json.js,transport.js'}
+{insert_scripts files='common.js,utils.js','shopping_flow.js'}
+</head>
+<body class="body_bj" style="background:#fff;">
+      <header>
+      <div class="tab_nav">
+        <div class="header" style="background:#E71F19;">
+          <div class="h-left"></div>
+          <div class="h-mid" style="color:#fff;">在线收银记录</div>
+          <div class="h-right">
+            <aside class="top_bar">
+            </aside>
+          </div>
+        </div>
+      </div>
+      </header>
+
+        
+<div id="tbh5v0">
+<div class="Personal">
+		<div class="innercontent1" >
+			<form method="post" action="shouyinyuan.php?act=push" >
+				<div class="name"><span>会员卡号</span>
+				  <input type="text" name="huiyuanka" value="" placeholder="*会员卡号" class="c-f-text">
+				</div>
+				<div class="name"><span>消费金额</span>
+				  <input type="text" name="money" value="" placeholder="*消费金额" class="c-f-text">
+				</div>
+				<div class="name"><span>收银员</span>
+				  <input type="text" name="shouyinyuan" value="{$suser_code}" placeholder="*收银员" class="c-f-text" readonly>
+				</div>
+				
+				<div class="field submit-btn">
+					<input type="submit" value="提 交" class="btn_big1" />
+				</div>
+				
+				<div class="field submit-btn" style="margin-top:30px;text-align:center;">
+					<a href="shouyinyuan.php?act=list">查看今日收银记录</a>
+				</div>
+			</form>
+		</div>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!-- $Id: ads_info.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+{include file="pageheader.htm"}
+<script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
+<link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
+<div class="main-div">
+    <form action="shops.php" method="post" name="theForm" enctype="multipart/form-data" onsubmit="return validate()">
+        <table width="100%" id="general-table">
+           
+            {if $action eq "add"}
+            <tr>
+                <td  class="label">商户名</td>
+				<td>
+                    <input type="text" name="name" value="{$info.name}" size="35" /><span class="require-field">*</span>
+					<span class="notice-span" style="display:block" >商户名填写后不可更改</span>
+                </td>
+            </tr>
+            {else}
+            <tr>
+                <td  class="label">商户名[{$info.id}]</td>
+				<td>
+                    <input type="text" name="name" value="{$info.name}" size="35" readonly /><span class="require-field">*</span>
+					
+                </td>
+            </tr>
+            {/if}
+            <tr>
+                <td  class="label">行业</td>
+                <td>
+					<input type="text" name="hangye" value="{$info.hangye}" size="35" />
+					<span class="notice-span" style="display:block" >请填写行业类型，如餐饮业，制造业</span>
+                </td>
+            </tr>
+            <tr>
+                <td  class="label">商户简介</td>
+                <td>
+                    <input type="text" name="desc" value="{$info.desc}" size="35" />
+                </td>
+            </tr>
+			
+			<tr>
+                <td  class="label">联系人</td>
+                <td>
+					<input type="text" name="username" value="{$info.username}" size="35" />
+					<span class="notice-span" style="display:block" >请填写联系人姓名</span>
+                </td>
+            </tr>
+			<tr>
+                <td  class="label">联系方式</td>
+                <td>
+					<input type="text" name="phone" value="{$info.phone}" size="35" />
+					<span class="notice-span" style="display:block" >请填写手机号</span>
+                </td>
+            </tr>
+			<tr>
+                <td  class="label">地址</td>
+                <td>
+					<input type="text" name="address" value="{$info.address}" size="35" />
+					<span class="notice-span" style="display:block" >请填写详细地址，如 山东省德州市禹城市商贸港一楼电子产业园</span>
+                </td>
+            </tr>
+			 <tr>
+                <td  class="label">商户描述</td>
+                <td>
+					<textarea name="content" rows="3" cols="48">{$info.content}</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td  class="label">上传商户logo</td>
+                <td>
+                    <input type='file' name='thumb' size='35' />
+                </td>
+            </tr>
+			<tr>
+                <td  class="label">上传商户图片</td>
+                <td>
+                    <p><input type='file' name='img_1' size='35' /></p>
+                    <p><input type='file' name='img_2' size='35' /></p>
+                    <p><input type='file' name='img_3' size='35' /></p>
+                    <p><input type='file' name='img_4' size='35' /></p>
+                    <p><input type='file' name='img_5' size='35' /></p>
+                </td>
+            </tr>
+			<tr>
+                <td  class="label">排序</td>
+                <td>
+					<input type="text" name="sort" value="{$info.sort}" size="35" />
+					<span class="notice-span" style="display:block" >数值越小越靠前</span>
+                </td>
+            </tr>
+			 <tr>
+                <td  class="label">推荐到首页</td>
+                <td>
+                    <input type="radio" name="is_home" value="1" {if $info.is_home eq 1} checked="true"{/if} />是
+                    <input type="radio" name="is_home" value="0" {if $info.is_home eq 0} checked="true"{elseif $info.is_home eq ''}checked="true" {/if} />否
+                </td>
+            </tr>
+            <tr>
+                <td  class="label">{$lang.enabled}</td>
+                <td>
+                    <input type="radio" name="status" value="1" {if $info.status eq 1} checked="true" {elseif $info.status eq ''}checked="true"{/if} />可用
+                    <input type="radio" name="status" value="2" {if $info.status eq 2} checked="true" {/if} />禁用
+                </td>
+            </tr>
+           
+			
+            <tr>
+                <td class="label">&nbsp;</td>
+                <td>
+                    <input type="submit" value="{$lang.button_submit}" class="button" />
+                    <input type="reset" value="{$lang.button_reset}" class="button" />
+                    <input type="hidden" name="act" value="insert" />
+                    <input type="hidden" name="id" value="{$info.id}" />
+                </td>
+            </tr>
+        </table>
+
+    </form>
+</div>
+{insert_scripts files="../js/utils.js,validator.js"}
+<script language="JavaScript">
+     /**
+     * 检查表单输入的数据
+     */
+    function validate()
+    {
+        
+        return true;
+    }
+
+    onload = function()
+    {
+        // 开始检查订单
+        startCheckOrder();
+        document.forms['theForm'].reset();
+    }
+
+    //-->
+    {/literal}
+</script>
+{include file="pagefooter.htm"}

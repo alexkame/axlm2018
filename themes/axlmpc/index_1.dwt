@@ -1,0 +1,315 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+--> 
+<!DOCTYPE html>
+<html>
+<head>
+<title>{$page_title}</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Property Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<link href="themes/axlmpc/axlm/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="themes/axlmpc/axlm/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="themes/axlmpc/axlm/css/style-my.css" rel="stylesheet" type="text/css" media="all"/>
+<!-- js -->
+<script src="themes/axlmpc/axlm/js/jquery-1.11.1.min.js"></script>
+<!-- //js -->
+<!-- start-smoth-scrolling -->
+<script type="text/javascript" src="themes/axlmpc/axlm/js/move-top.js"></script>
+<script type="text/javascript" src="themes/axlmpc/axlm/js/easing.js"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){		
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script>
+<!-- start-smoth-scrolling -->
+<!--start manu -->
+<link href="themes/axlmpc/axlm/css/flexy-menu.css" rel="stylesheet">
+<script type="text/javascript" src="themes/axlmpc/axlm/js/flexy-menu.js"></script>
+<script type="text/javascript">$(document).ready(function(){$(".flexy-menu").flexymenu({speed: 400,type: "horizontal",align: "right"});});</script>
+<!--start slider -->
+	<script src="themes/axlmpc/axlm/js/responsiveslides.min.js"></script>
+	  <script>
+	    // You can also use "$(window).load(function() {"
+		    $(function () {
+			      // Slideshow 1
+			      $("#slider1").responsiveSlides({
+			        speed: 600
+			      });
+			});
+	  </script>
+</head>
+	
+<body>
+<div class="w"> 
+
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+</div>
+<!-- //navigation -->
+<!-- banner -->
+	<div class="slider">
+		<div class="image-slider">
+			<!-- Slideshow 1 -->
+			<ul class="rslides" id="slider1">
+				<li><img class="img-responsive" src="themes/axlmpc/axlm/images/banner_1.png" alt=""></li>
+				<li><img class="img-responsive" src="themes/axlmpc/axlm/images/banner_2.png" alt=""></li>
+				<li><img class="img-responsive" src="themes/axlmpc/axlm/images/banner_3.png" alt=""></li>
+			</ul>
+		<!-- Slideshow 2 -->
+		</div>
+	</div>
+	<!-- start sidebar -->
+<!-- //banner -->
+<!-- banner-bottom -->
+	<div class="banner-bottom">
+		<div class="container">
+			<div class="banner-bottom-left">
+				<div class="banner-bottom-left-grids">
+					<div class="banner-bottom-left-grid iusto">
+						<img src="{$goods_1.goods_thumb}" alt=" " class="img-responsive" style="width:269;height:299px;" />
+						<div class="cap1">
+							<span> </span>
+						</div>
+					</div>
+					<div class="banner-bottom-left-grid txt">
+						<a href="goods.php?id={$goods_2.goods_id}"><h3>{$goods_2.goods_name}</h3></a>
+						<p>{$goods_2.goods_brief}</p>
+					</div>
+					<div class="banner-bottom-left-grid iusto">
+						<img src="{$goods_3.goods_thumb}" alt=" " class="img-responsive" style="width:269;height:299px;" />
+						<div class="cap">
+							<span> </span>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="banner-bottom-left-grids">
+					<div class="banner-bottom-left-grid txt">
+						<a href="goods.php?id={$goods_1.goods_id}"><h3>{$goods_1.goods_name}</h3></a>
+						<p>{$goods_1.goods_brief}</p>
+					</div>
+					<div class="banner-bottom-left-grid iusto">
+						<img src="{$goods_2.goods_thumb}" alt=" " class="img-responsive" style="width:269;height:299px;" />
+						<div class="cap3">
+							<span> </span>
+						</div>
+					</div>
+					<div class="banner-bottom-left-grid txt">
+						<a href="goods.php?id={$goods_3.goods_id}"><h3>{$goods_3.goods_name}</h3></a>
+						<p>{$goods_3.goods_brief}</p>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+				<div class="sidebar top">	
+				<!---start-da-slider----->
+					<div id="da-slider" class="da-slider">
+						<div class="da-slide">
+							<h2>中国女性生殖健康服务工程公益讲座——衢州站</h2>
+							<p>2017年5月18日，由西安健康产业有限公司大力推广的中国女性生殖健康服务工程第56603场公益讲座在浙江省衢州市东方酒店隆重召开，三八妇乐众生系统众心体系400余人参与其中。</p>
+							<a class="da-link" href="#">了解更多</a>
+						</div>
+						<div class="da-slide">
+							<h2>净水机 卧式机(紫光1)</h2>
+							<p>净水器也叫净水机、水质净化器，是按对水的使用要求对水质进行深度过滤、净化处理的水处理设备。平时所讲的净水器，一般是指用作家庭使用的小型净化器。</p>
+							<a class="da-link" href="#">了解更多</a>
+						</div>
+						<div class="da-slide">
+							<h2>中国女性生殖健康服务工程推进会走进龙江</h2>
+							<p>命运被他们改写，人生被他们重新定义。优秀志愿者刘玉江先生、张秀琴女士真情流露，分享了自己的收获和感受。之前每天都在农田中早出晚归、辛勤劳作也无法取得更多的收入，而在这里，他们却拥有了崭新的幸福生活。</p>
+							<a class="da-link" href="#">了解更多</a>
+						</div>
+						<div class="da-slide">
+							<h2>诚信铸千秋| 荣膺中国质量万里行</h2>
+							<p>近期，凭借引领行业的用户口碑、服务模式，以及诚实守信的经营之道通过中国质量万里行市场调查中心调查评估，荣获2017年重质量·讲诚信·树品牌“3·15诚信展示企业”。</p>
+							<a class="da-link" href="#">了解更多</a>
+						</div>			
+						<nav class="da-arrows">
+							<span class="da-arrows-prev"></span>
+							<span class="da-arrows-next"></span>
+						</nav>
+					</div>
+ 			<!---//End-da-slider----->
+				<!---strat da-slider scipt---->
+				<link rel="stylesheet" type="text/css" href="themes/axlmpc/axlm/css/da_slider.css" />
+				<script type="text/javascript" src="themes/axlmpc/axlm/js/modernizr.custom.28468.js"></script>
+				<script type="text/javascript" src="themes/axlmpc/axlm/js/jquery.cslider.js"></script>
+					<script type="text/javascript">
+						$(function() {
+						
+							$('#da-slider').cslider({
+								autoplay	: true,
+								bgincrement	: 450
+							});
+						
+						});
+					</script>
+				<!---//end da-slider script---->
+					<div class="cate">
+						<h2>热销产品</h2>
+						<ul>
+							<!--{foreach from=$hot_goods item=g}--> 
+							<li><em><a href="{$g.url}">{$g.short_name}</a></em></li>
+							<!--{/foreach}--> 
+						</ul>
+					</div>
+				</div>
+			<div class="clearfix"> </div>
+<!-- banner-btm-grids -->
+			<div class="banner-btm-grids">
+				<div class="banner-btm-grid">
+					<div class="cap-hover">
+						<span class="glyphicon glyphicon-star hme" aria-hidden="true"></span>
+					</div>
+					<h3>{$tabgoods_1.goods_name}</h3>
+					<p>
+						{$tabgoods_1.goods_brief}
+					</p>
+					<div class="more">
+						<a href="goods.php?id={$tabgoods_1.goods_id}" class="hvr-rectangle-in learn">查看详情</a>
+					</div>
+				</div>
+				<div class="banner-btm-grid">
+					<div class="cap-hover">
+						<span class="glyphicon glyphicon-leaf hme" aria-hidden="true"></span>
+					</div>
+					<h3>{$tabgoods_2.goods_name}</h3>
+					<p>
+						{$tabgoods_2.goods_brief}
+					</p>
+					<div class="more">
+						<a href="goods.php?id={$tabgoods_2.goods_id}" class="hvr-rectangle-in learn">查看详情</a>
+					</div>
+				</div>
+				<div class="banner-btm-grid">
+					<div class="cap-hover">
+						<span class="glyphicon glyphicon-leaf hme" aria-hidden="true"></span>
+					</div>
+					<h3>{$tabgoods_3.goods_name}</h3>
+					<p>
+						{$tabgoods_3.goods_brief}
+					</p>
+					<div class="more">
+						<a href="goods.php?id={$tabgoods_3.goods_id}" class="hvr-rectangle-in learn">查看详情</a>
+					</div>
+				</div>
+				<div class="banner-btm-grid">
+					<div class="cap-hover">
+						<span class="glyphicon glyphicon-star hme" aria-hidden="true"></span>
+					</div>
+					<h3>{$tabgoods_4.goods_name}</h3>
+					<p>
+						{$tabgoods_4.goods_brief}
+					</p>
+					<div class="more">
+						<a href="goods.php?id={$tabgoods_4.goods_id}" class="hvr-rectangle-in learn">查看详情</a>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+<!-- //banner-btm-grids -->
+<!-- banner-bottom2 -->
+			<div class="banner-bottom2">
+				<div class="banner-bottom-right1">
+					<div class="banner-bottom-right-info">
+						<h2 class="voluptatum">服务热线：400-617-6169</h2>
+						<p class="quis">
+							专线: 0534-539-3331<br>
+							Email: <a href="mailto:mdsslm@163.com" target="_blank" style="color:#fff;">mdsslm@163.com</a><br>
+							QQ: <a href="http://wpa.qq.com/msgrd?v=3&uin=647311986&site=qq&menu=yes" target="_blank" style="color:#fff;">647311986</a><br>
+							从不要求消费者忠于我们<br>
+							但是， 我们永远忠于消费者</p>
+						<a href="message.php" class="hvr-rectangle-in">联系我们</a>
+					</div>
+					<div class="cate Nam">
+						<h2>新品上市</h2>
+						<ul>
+							<!--{foreach from=$new_goods item=g}--> 
+							<li><em><a href="{$g.url}">{$g.short_name}</a></em></li>
+							<!--{/foreach}--> 
+						</ul>
+					</div>
+				</div>
+				<div class="banner-bottom-left1">
+				<div class="banner-bottom-left-grids">
+					<div class="banner-bottom-left-grid iusto">
+						<img src="{$goods_4.goods_thumb}" alt=" " class="img-responsive" style="width:269;height:299px;" />
+						<div class="cap1">
+							<span> </span>
+						</div>
+					</div>
+					<div class="banner-bottom-left-grid txt">
+						<a href="goods.php?id={$goods_5.goods_id}"><h3>{$goods_5.goods_name}</h3></a>
+						<p>{$goods_5.goods_brief}</p>
+					</div>
+					<div class="banner-bottom-left-grid iusto">
+						<img src="{$goods_6.goods_thumb}" alt=" " class="img-responsive" style="width:269;height:299px;" />
+						<div class="cap">
+							<span> </span>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="banner-bottom-left-grids">
+					<div class="banner-bottom-left-grid txt">
+						<a href="goods.php?id={$goods_4.goods_id}"><h3>{$goods_4.goods_name}</h3></a>
+						<p>{$goods_4.goods_brief}</p>
+					</div>
+					<div class="banner-bottom-left-grid iusto">
+						<img src="{$goods_5.goods_thumb}" alt=" " class="img-responsive" style="width:269;height:299px;" />
+						<div class="cap3">
+							<span> </span>
+						</div>
+					</div>
+					<div class="banner-bottom-left-grid txt">
+						<a href="goods.php?id={$goods_6.goods_id}"><h3>{$goods_6.goods_name}</h3></a>
+						<p>{$goods_6.goods_brief}</p>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				</div>
+			
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+<!-- //banner-bottom -->
+<!-- footer -->
+<div class="site-footer">
+  <div class="footer-related" style="background:#fff;"> 
+  <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem --> </div>
+</div>
+<!-- //footer -->
+<!-- here stars scrolling icon -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			/*
+				var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear' 
+				};
+			*/
+								
+			$().UItoTop({ easingType: 'easeOutQuart' });
+								
+			});
+	</script>
+<!-- //here ends scrolling icon -->
+	<!-- for bootstrap working -->
+		<script src="themes/axlmpc/axlm/js/bootstrap.js"> </script>
+	<!-- //for bootstrap working -->
+</body>
+</html>

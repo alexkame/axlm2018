@@ -1,0 +1,81 @@
+{if $full_page}
+<!-- $Id: users_list.htm 15617 2009-02-18 05:18:00Z sunxiaodong $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+<div class="list-div" id="listDiv" style="margin-bottom:30px;">
+<div class="form-div">
+基本信息
+</div>
+<table>
+  <tr>
+    <td width=250>统计时间</td>
+    <td>交易额</td>
+    <td>订单数</td>
+    <td>状态</td>
+    <td>操作</td>
+  </tr>
+  <tr>
+	<td>{$info.baseinfo.stime} - {$info.baseinfo.etime}</td>
+	<td>{$info.baseinfo.money_amount_format}</td>
+	<td>{$info.baseinfo.order_total}</td>
+	<td>{$info.baseinfo.status_format}</td>
+	<td>
+	<!-- {if $info.baseinfo.status neq '1'} -->
+	<a href="fenhong.php?act=push&id={$info.baseinfo.id}" class="btn-orange">分红</a>
+	<!-- {/if} -->
+	</td>
+  </tr>
+</table>
+</div>
+
+<form method="POST" action="" name="listForm">
+
+<!-- start users list -->
+<div class="list-div" id="listDiv">
+{/if}
+<!--用户列表部分-->
+<table cellpadding="3" cellspacing="1">
+  <tr>
+    <th>ID</th>
+    <th>分红等级</th>
+    <th>分红人数</th>
+    <th>分红金额</th>
+    <th>创建时间</th>
+  <tr>
+  {foreach from=$info.leveinfo item=d}
+  <tr>
+    <td>{$d.id}</td>
+    <td>{$d.level}%</td>
+    <td>{$d.useramount}</td>
+    <td>{$d.bonus_money_amount}</td>
+    <td>{$d.time}</td>
+	<!--
+    <td align="center">
+      <a href="fenhong.php?act=fh_user_list&id={$d.id}"><img src="images/icon_view.gif" border="0" height="16" width="16" />查看</a>
+    </td>
+	-->
+  </tr>
+  {foreachelse}
+  <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
+  {/foreach}
+</table>
+
+{if $full_page}
+</div>
+<!-- end users list -->
+</form>
+<script type="text/javascript" language="JavaScript">
+<!--
+{literal}
+onload = function()
+{
+    document.forms['searchForm'].elements['keyword'].focus();
+    // 开始检查订单
+    startCheckOrder();
+}
+//-->
+</script>
+{/literal}
+{include file="pagefooter.htm"}
+{/if}

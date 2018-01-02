@@ -1,0 +1,43 @@
+<!-- header -->
+	<div class="header">
+		<div class="container">
+			<div class="header-nav">
+				<nav class="navbar navbar-default">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header" style="background:none;">
+					    <img src="/logo.png">
+					</div>
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					 <ul class="nav navbar-nav">
+						<li class="active"><a href="/">首页</a></li>
+						<li class="act"><a href="blog.php">产品中心</a></li>
+						<li class="act"><a href="news.php">新闻资讯</a></li>
+						<li class="act"><a href="teach.php">使用教程</a></li>
+						<li class="act"><a href="user.php">个人中心</a></li>
+					  </ul>
+					</div><!-- /.navbar-collapse -->
+				</nav>
+			</div>
+	
+			<!-- search-scripts -->
+			<script src="themes/axlmpc/axlm/js/classie.js"></script>
+			<script src="themes/axlmpc/axlm/js/uisearch.js"></script>
+				<script>
+					new UISearch( document.getElementById( 'sb-search' ) );
+				</script>
+			<!-- //search-scripts -->
+			<!-- script for menu -->
+					<script> 
+						$( "span.menu" ).click(function() {
+						$( "ul.nav1" ).slideToggle( 300, function() {
+						 // Animation complete.
+						});
+						});
+					</script>
+			<!-- //script for menu -->
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //header -->

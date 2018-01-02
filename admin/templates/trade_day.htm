@@ -1,0 +1,44 @@
+<!-- {if $full_page} -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+
+<div class="list-div" id="listDiv" style="margin-bottom:30px;">
+<div class="form-div">
+今日交易额
+</div>
+<!-- {if $info.trade_amount}-->
+<table>
+	<tr>
+		<th style="padding-right:10px;text-align:right;">统计时间</th>
+		<td>{$info.stime} - {$info.etime}</td>
+	</tr>
+	<tr>
+		<th style="padding-right:10px;text-align:right;">总交易额</th>
+		<td><b>{$info.trade_amount}</b></td>
+	</tr>
+	<tr>
+		<th style="padding-right:10px;text-align:right;">在线订单交易额</th>
+		<td><b>{$info.order_amount}</b> <span style="color:grey;">订单数：({$info.order_nums})</span></td>
+	</tr>
+	<tr>
+		<th style="padding-right:10px;text-align:right;">现金交易额</th>
+		<td><b>{$info.cash_amount}</b> <span style="color:grey;">现金交易数：({$info.cash_nums})</span></td>
+	</tr>
+	<tr>
+		<th style="padding-right:10px;text-align:right;">返现总金额</th>
+		<td>{$info.trade_fanxian_amount} <span style="color:grey;">返现比例：({$info.fanxian_bili})</span></td>
+	</tr>
+	<tr>
+		<th style="padding-right:10px;text-align:right;">返现用户金额/人均</th>
+		<td><b>{$info.user_money}</b> <span style="color:grey;">符合返现用户：({$info.user_num} 人) </span></td>
+	</tr>
+	
+</table>
+<!-- {else} -->
+目前没有现金交易
+<!-- {/if}-->
+</div>
+
+{include file="pagefooter.htm"}
+<!-- {/if} -->

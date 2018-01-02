@@ -1,0 +1,41 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="/themes/axlmpc/axlm_new/css/footer.css?v=1" rel="stylesheet" type="text/css">
+<!-- footer -->
+		<footer class="hy-footer">
+                    <div class="hy-footer-nav1">
+                        <ul>
+                            <li><img src="/themes/axlmpc/axlm_new/images/axlm-footer-icon1.png"><br>超值</li>
+                            <li><img src="/themes/axlmpc/axlm_new/images/axlm-footer-icon2.png"><br>全国支付</li>
+                            <li><img src="/themes/axlmpc/axlm_new/images/axlm-footer-icon3.png"><br>安全交易</li>
+                            <li><img src="/themes/axlmpc/axlm_new/images/axlm-footer-icon4.png"><br>诚信商家</li>
+                            <li><img src="/themes/axlmpc/axlm_new/images/axlm-footer-icon5.png"><br>24小时客服</li>
+                            <div style="clear:both;"></div>
+                        </ul>
+                        <div class="hy-footer-copyright">
+                            &copy; 2015-2017 明德善商联盟 版权所有，并保留所有权利。明德善商联盟<br>
+                            Tel: 400-617-6169;0534-539-3331<span class="hy-blank"></span>E-mail:647311986@qq.com
+                        </div>
+                    </div>
+                    <div class="hy-footer-nav2">
+                            <ul>
+                            <a href="index.php"><li class="hy-footer-nav2-lifirst">首页</li></a>
+                            <a href="catalog.php"><li>产品中心</li></a>
+                            <a href="stores.php"><li>联盟商家</li></a>
+                            <a href="article_list.php"><li>新闻资讯</li></a>
+                            <a href="help.php"><li>使用教程</li></a>
+                            <a href="user.php"><li>个人中心</li></a>
+                            <div style="clear:both;"></div>
+                        </ul>
+                    </div>
+                </footer>
+<!-- //footer -->
+
+  
+<img src="api/cron.php?t=<?php gmtime(); ?>" alt="" style="width:0px;height:0px;display:none;" />
+<!-- footer end  -->
+<script type="text/javascript">
+Ajax.call('api/okgoods.php', '', '', 'GET', 'JSON');
+//预售
+Ajax.call('pre_sale.php?act=check_order', '', '', 'GET', 'JSON');
+</script>
+<script type="text/javascript" src="themes/axlmpc/js/base.js" ></script>

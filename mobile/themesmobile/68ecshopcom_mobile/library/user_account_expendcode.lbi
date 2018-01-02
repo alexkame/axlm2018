@@ -1,0 +1,8 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!---------推广二维码----------->
+<style>
+	body.body_bj{background:#fff;}
+</style>
+<div class="detail_m" style="text-align:center;min-height:100%;padding-top:100px;">
+<img src="erweima_png.php?data=http://www.365axlm.cn/mobile/?ucode={$baseinfo.expend_code}" width="80%" height="80%">
+</div>

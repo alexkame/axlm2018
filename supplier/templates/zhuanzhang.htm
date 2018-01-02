@@ -1,0 +1,51 @@
+<!-- $Id: shop_config.htm 16865 2009-12-10 06:05:32Z sxc_shop $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,../js/region.js"}
+<div class="tab-div">
+  <!-- tab bar -->
+  <div id="tabbar-div">
+    <p>
+      {foreach from=$group_list item=group name="bar_group"}<span class="{if $smarty.foreach.bar_group.iteration eq 1}tab-front{else}tab-back{/if}" id="{$group.code}-tab">{$group.name}</span>{/foreach}
+    </p>
+  </div>
+  <!-- tab body -->
+  <div id="tabbody-div">
+    <form enctype="multipart/form-data" name="theForm" action="?act=zhuanzhang" method="post">
+    <table width="90%">
+        <tr>
+            <td>资金</td>
+            <td>
+                现金币: {$userinfo.account_xianjinbi}<br>
+                消费币: {$userinfo.account_xiaofeibi}<br>
+                积分币: {$userinfo.account_jifenbi}
+            </td>
+        </tr>
+        <tr>
+            <td>类型</td>
+            <td>
+                <input type="radio" id="bizhong" name="bizhong" value="account_xianjinbi" checked /> 现金币&nbsp;&nbsp;
+                <input type="radio" id="bizhong" name="bizhong" value="account_xiaofeibi" /> 消费币&nbsp;&nbsp;
+                <input type="radio" id="bizhong" name="bizhong" value="account_jifenbi" /> 积分币&nbsp;&nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td>转账给</td>
+            <td><input type="text" id="touser" name="touser" /></td>
+        </tr>
+        <tr>
+            <td>金额</td>
+            <td><input type="text" id="amount" name="amount" /></td>
+        </tr>
+    </table>
+    <div class="button-div">
+      <input name="submit" type="submit" value="{$lang.button_submit}" class="button" />
+      <input name="reset" type="reset" value="{$lang.button_reset}" class="button" />
+    </div>
+    </form>
+  </div>
+</div>
+
+</body>
+{insert_scripts files="tab.js,validator.js"}
+
+{include file="pagefooter.htm"}

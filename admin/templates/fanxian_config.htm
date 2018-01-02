@@ -1,0 +1,74 @@
+<!-- $Id: shop_config.htm 16865 2009-12-10 06:05:32Z sxc_shop $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,../js/region.js"}
+<div class="tab-div">
+  <!-- tab bar -->
+  <div id="tabbar-div">
+    <p>
+     <span class="tab-front" id="tab">返现设置</span>
+    </p>
+  </div>
+  <!-- tab body -->
+  <div id="tabbody-div">
+    <form enctype="multipart/form-data" name="theForm" action="?act=post" method="post">
+   <!-- 返现设置 -->
+    <table width="90%">
+     <tbody>
+					<tr id="sms_order_placed">
+					<td class="label" valign="top">返现开启</td>
+					<td>
+						<label><input type="radio" name="fanxian_open" value="1" {if $fanxian.fanxian_open eq '1'}checked="true"{/if} >是</label>
+						<label><input type="radio" name="fanxian_open" value="0" {if $fanxian.fanxian_open eq '0'}checked="true"{/if} >否</label>
+					</td>
+				  </tr>
+                  <tr id="sms_shop_mobile">
+					<td class="label" valign="top">日结算时间</td>
+					<td>
+						<input name="day_trade_time_h" type="text" value="{$fanxian.day_trade_time_h}" size="15" style="min-width:20px;width:20px;"> : <input name="{$fanxian.day_trade_time_m}" type="text" value="30" size="15" style="min-width:20px;width:20px;">
+						<br>
+						<span class="notice-span" style="display:block;" id="noticesms_shop_mobile">每天结算时间，24小时格式. 默认为 17:00</span>
+					</td>
+				  </tr>
+				   <tr id="sms_shop_mobile">
+					<td class="label" valign="top">返现金额比例</td>
+					<td>
+						<input name="{$fanxian.fanxian_bili}" type="text" value="10" size="15" style="min-width:50px;width:50px;"> %
+						<br>
+						<span class="notice-span" style="display:block;" id="noticesms_shop_mobile">日交易额x%，作为返现金额</span>
+					</td>
+				  </tr>
+				  <tr id="sms_order_placed" style="display:none;">
+					<td class="label" valign="top">返现方式</td>
+					<td>
+						<label><input type="radio" name="fanxian_type" value="jiecengfanxian" checked>阶梯返现</label>
+						<label><input type="radio" name="fanxian_type" value="jinefanxian"  >金额返现</label>
+					</td>
+				  </tr>
+                  <tr id="sms_shop_mobile">
+					<td class="label" valign="top">返现金额最低限制</td>
+					<td>
+						<input name="{$fanxian.fanxian_money_limit}" type="text" value="365" size="15" style="min-width:50px;width:50px;"> 元
+						<br>
+						<span class="notice-span" style="display:block;" id="noticesms_shop_mobile">只有购物金额达到这个限制，才能开始返现.默认365元</span>
+					</td>
+				  </tr>
+				  <tr id="sms_shop_mobile">
+					<td class="label" valign="top">人民币与积分比例</td>
+					<td>
+						<input name="renminbi" type="text" value="{$fanxian.renminbi}" size="15" style="min-width:50px;width:50px;" > : <input name="point" type="text" value="{$fanxian.point}" size="15" style="min-width:50px;width:50px;">
+						<br>
+						<span class="notice-span" style="display:block;" id="noticesms_shop_mobile">人民币 ：积分</span>
+					</td>
+				  </tr>
+          </tbody>
+    </table>
+
+    <div class="button-div">
+      <input name="submit" type="submit" value="{$lang.button_submit}" class="button" />
+      <input name="reset" type="reset" value="{$lang.button_reset}" class="button" />
+    </div>
+    </form>
+  </div>
+</div>
+{insert_scripts files="tab.js,validator.js"}
+{include file="pagefooter.htm"}

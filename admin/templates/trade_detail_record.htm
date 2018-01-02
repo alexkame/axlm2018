@@ -1,0 +1,29 @@
+<!-- {if $full_page} -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+
+<div class="list-div" id="listDiv" style="margin-bottom:30px;">
+<!-- {if $list}-->
+<table>
+	<tr>
+		<th>{$title_id}</th>
+		<th>{$title_money}</th>
+	</tr>
+	{foreach from=$list item=d}
+	<tr>
+		<td>{$d.id}</td>
+		<td>{$d.money}</td>
+	</tr>
+  {foreachelse}
+  <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
+  {/foreach}
+</table>
+<div style="margin-top:10px;padding:10px;background:#eee;">{$tongji}</div>
+<!-- {else} -->
+目前没有交易记录
+<!-- {/if}-->
+</div>
+
+{include file="pagefooter.htm"}
+<!-- {/if} -->

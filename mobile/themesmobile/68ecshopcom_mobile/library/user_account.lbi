@@ -1,0 +1,32 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="Funds">
+<h2><span>昨日分红</span><em>￥{$pc_userinfo.fenhong}</em></h2>
+<!--<h3>返现总计：{$user_info.user_points}</h3>-->
+</div>
+<div class="Funds yongjinfenhong">
+	<!-- {if $pc_userinfo} -->
+		<h3 class="yongjin">现金币：{$pc_userinfo.account_xianjinbi}</h3>
+		<h3 class="yongjin">消费币：{$pc_userinfo.account_xiaofeibi}</h3>
+		<h3 class="yongjin">积分币：{$pc_userinfo.account_jifenbi}</h3>
+		<h3 class="yongjin">积分：{$pc_userinfo.account_jifen}</h3>
+		<h3 class="yongjin">爱心币：{$pc_userinfo.account_aixinbi}</h3>
+	<!-- {/if} -->
+</div>
+<p style="text-align:center;">查看更多信息请到电脑端网站</p>
+<div class="Funds_dom">
+<ul>
+<!--<li  class="border_left"><a href="user.php?act=bonus"><i class="ac1"><em>{$user_info.bonus_count}</em></i><span>红包</span></a></li>-->
+<!--<li  class="border_left"><a href="user.php?act=vc_login"><i class="ac3"></i><span>储值卡充值</span></a></li>-->
+<!--<li class="border_left"><a href="user.php?act=account_deposit"><i class="ac2"></i><span>在线充值</span></a></li>-->
+<!--<li class="border_left"><a href="user.php?act=account_raply"><i class="ac4"></i><span>提现</span></a></li>-->
+<!--
+{if $baseinfo.is_valid_user}
+{if $is_show_fenhong}<li class="border_left"><a href="user.php?act=account_fenhong"><i class="ac4-green"></i><span>分红</span></a></li>{/if}
+{if $is_show_sanji_fenxiao}<li><a href="user.php?act=account_yongjin"><i class="ac4-yellow"></i><span>佣金</span></a></li>{/if}
+{/if}
+<li  class="border_left"><a href="user.php?act=account_detail"><i class="ac5"></i><span>账户明细</span></a></li>
+<li><a href="user.php?act=account_log"><i class="ac6"></i><span>申请记录</span></a></li>
+-->
+</ul>
+</div>
+

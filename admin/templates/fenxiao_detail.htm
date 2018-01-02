@@ -1,0 +1,54 @@
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+<form method="POST" action="" name="listForm">
+
+<!-- start users list -->
+<div class="list-div" id="listDiv">
+<!--用户列表部分-->
+<table cellpadding="3" cellspacing="1">
+  <tr>
+    <th>ID</th>
+    <th>UserID</th>
+    <th>用户名</th>
+    <th>是否符合推广条件</th>
+    <th>分红等级</th> 
+    <th>直推人数</th>
+    <th>推广码</th>
+    <th>资金</th>
+    <th>佣金总金额</th>
+    <th>分红总金额</th>
+  <tr>
+  <tr>
+    <td>{$info.id}</td>
+    <td>{$info.user_id}</td>
+    <td class="first-cell">{$info.user_name}</td>
+    <td class="first-cell">{$info.is_valid_user}</td>
+    <td class="first-cell">{$info.bonus_proportional}</td>
+    <td>{$info.expend_user_amount}</td>
+    <td>{$info.expend_code}</td>
+    <td>{$info.user_money}</td>
+    <td>{$info.expend_amount}</td>
+    <td>{$info.bonus_amount}</td>
+  </tr>
+</table>
+<div class="form-div" style="margin-top:30px;">
+直推会员{$listtotal}
+</div>
+<table cellpadding="3" cellspacing="1">
+  <tr>
+    <th>UserID</th>
+    <th>用户名</th>
+    <th>状态</th>
+  <tr>
+ {foreach from=$list item=d}
+  <tr>
+    <td>{$d.user_id}</td>
+    <td>{$d.user_name}</td>
+    <td>{$d.is_valid_user}</td>
+  </tr>
+  {/foreach}
+</table>
+</div>
+</form>
+{include file="pagefooter.htm"}

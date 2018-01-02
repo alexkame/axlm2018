@@ -1,0 +1,36 @@
+<!-- {if $full_page} -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+
+<div class="list-div" id="listDiv" style="margin-bottom:30px;">
+<!-- {if $list}-->
+<table>
+	<tr>
+		<th>用户ID</th>
+		<th>用户名</th>
+		<th>分红金额</th>
+		<th>执行时间</th>
+	</tr>
+	{foreach from=$list item=d}
+	<tr>
+		<td>{$d.user_id}</td>
+		<td>{$d.user_name}</td>
+		<td>{$d.fenhong}</td>
+		<td>{$d.ctime_format}</td>
+	</tr>
+  {foreachelse}
+  <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
+  {/foreach}
+</table>
+<div style="margin-top:10px;padding:10px;background:#eee;">
+    分红日期：{$info.fenhong_date}  总分红点：{$info.fenhong_total}  分红总金额：{$info.fenhong_money}<br>
+    分红总人数：{$info.fenhong_user_total}  单个分红点金额:{$info.fenhong_dian_money}
+</div>
+<!-- {else} -->
+目前没有交易记录
+<!-- {/if}-->
+</div>
+
+{include file="pagefooter.htm"}
+<!-- {/if} -->

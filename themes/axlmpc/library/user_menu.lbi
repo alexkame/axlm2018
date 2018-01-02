@@ -1,0 +1,51 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<link href="/themes/axlmpc/axlm_new/css/person.css" rel="stylesheet" type="text/css">
+
+        	<!--person-left start-->
+                <div class="hy-person-left-list">
+                	<ul class="hy-person-left-list-left">
+                            <li class="hy-person-left-list-left-active hy-person-listbg1">
+                                    会员中心
+                                    <ul class="hy-person-left-list-right">
+                                    <li class="{if $action eq ''}hy-person-left-list-right-active{/if}"><a href="user.php" class="item {if $action eq 'default'}curs{/if}"><span>{$lang.label_welcome}</span><i></i></a></li>
+                                    <li class="{if $action eq 'profile'}hy-person-left-list-right-active{/if}"><a href="user.php?act=profile" class="item {if $action eq 'profile'}curs{/if}"><span>{$lang.label_profile}</span><i></i></a></li>
+                                    <li><a href="security.php" class="item {if $is_security eq 'true'}curs{/if}"><span>账户安全</span><i></i></a></li>
+                                    <li class="{if $action eq 'address_list'}hy-person-left-list-right-active{/if}"><a href="user.php?act=address_list" class="item {if $action eq 'address_list'}curs{/if}"><span>{$lang.label_address}</span><i></i></a></li>
+                                    <li><a href="account.php" class="item {if $is_account eq 1}curs{/if}"><span>资金账户</span><i></i></a>  </li>
+                                    <li class="{if $action eq 'account_raply'}hy-person-left-list-right-active{/if}"><a href="user.php?act=account_raply" class="item {if $action eq 'account_raply'}curs{/if}"><span>提现</span><i></i></a></li>
+                                </ul>
+                            </li>
+                            <li class="hy-person-listbg2">
+                                    交易中心
+                                    <ul class="hy-person-left-list-right">
+                                    <li class="{if $action eq 'order_list'}hy-person-left-list-right-active{/if}"><a href="user.php?act=order_list" class="item {if $action eq 'order_list'|| $action eq 'order_detail'}curs{/if}" ><span>{$lang.label_order}</span><i></i></a></li>
+                                    <li class="{if $action eq 'my_comment'}hy-person-left-list-right-active{/if}"><a href="user.php?act=my_comment" class="item {if $action eq 'my_comment'}curs{/if}"><span>商品评价/晒单</span><i></i></a> </li>
+                                    <li class="{if $action eq 'collection_list'}hy-person-left-list-right-active{/if}"><a href="user.php?act=collection_list" class="item {if $action eq 'collection_list'}curs{/if}"><span>商品收藏</span><i></i></a></li>
+                                </ul>
+                            </li>
+                            <li class="hy-person-listbg3">
+                                    服务中心
+                                    <ul class="hy-person-left-list-right">
+                                    <li class="{if $action eq 'message_list'}hy-person-left-list-right-active{/if}"><a href="user.php?act=message_list" class="item {if $action eq 'message_list'}curs{/if}"><span>{$lang.label_message}</span><i></i></a> </li>
+                                    <li class="{if $action eq 'show_expend_users'}hy-person-left-list-right-active{/if}"><a href="account.php?act=show_expend_users" class="item {if $action eq 'show_expend_users'}curs{/if}"><span>推荐中心</span><i></i></a></li>
+                                    <li class="{if $action eq 'affiliate'}hy-person-left-list-right-active{/if}"><a href="user.php?act=affiliate" class="item {if $action eq 'affiliate'}curs{/if}"><span>我的推荐</span><i></i></a></li>
+                                    <li><a href="apply_index.php" class="item"><span>商家联盟</span><i></i></a></li>
+                                    <li class="{if $action eq 'zhuanzhang'}hy-person-left-list-right-active{/if}"><a href="account.php?act=show_expend_users" class="item {if $action eq 'zhuanzhang'}curs{/if}"><span>转账</span><i></i></a></li>
+                                </ul>
+                            </li>
+                        </ul>
+		</div>
+            <!--person-left end-->
+        <script src="js/jquery-1.9.1.min.js"></script>
+            <script>
+                    $(".hy-person-left-list-left").children("li").click(function(){
+                            $(this).addClass("hy-person-left-list-left-active");
+                            $(this).siblings("li").removeClass("hy-person-left-list-left-active");
+                    })
+                    $(".hy-person-left-list-right").children("li").click(function(){
+                            $(this).addClass("hy-person-left-list-right-active");
+                            $(this).siblings("li").removeClass("hy-person-left-list-right-active");
+                    })		
+
+            </script>

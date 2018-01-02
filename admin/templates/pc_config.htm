@@ -1,0 +1,39 @@
+<!-- $Id: shop_config.htm 16865 2009-12-10 06:05:32Z sxc_shop $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,../js/region.js"}
+<div class="tab-div">
+  <!-- tab bar -->
+  <div id="tabbar-div">
+    <p>
+     <span class="tab-front" id="tab">系统参数设置</span>
+    </p>
+  </div>
+  <!-- tab body -->
+  <div id="tabbody-div">
+    <form enctype="multipart/form-data" name="theForm" action="?act=post" method="post">
+   <!-- 返现设置 -->
+    <table width="90%">
+		<tbody>
+				 <!-- {foreach from=$pcconfig item=val} -->	
+				<tr id="sms_shop_mobile">
+					<td class="label" valign="top">{$val.sname}</td>
+					<td style="width:170px;">
+						<input name="{$val.sname}" type="text" value="{$val.svalue}" style="min-width:150px;width:150px;">
+					</td>
+					<td style="text-align:left;padding-left:10px;">
+						<span class="notice-span" style="display:block;" id="noticesms_shop_mobile">{$val.note}</span>
+					</td>
+				</tr>
+				<!-- {/foreach} -->
+        </tbody>
+    </table>
+
+    <div class="button-div">
+      <input name="submit" type="submit" value="{$lang.button_submit}" class="button" />
+      <input name="reset" type="reset" value="{$lang.button_reset}" class="button" />
+    </div>
+    </form>
+  </div>
+</div>
+{insert_scripts files="tab.js,validator.js"}
+{include file="pagefooter.htm"}

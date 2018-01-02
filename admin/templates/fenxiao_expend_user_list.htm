@@ -1,0 +1,69 @@
+{if $full_page}
+<!-- $Id: users_list.htm 15617 2009-02-18 05:18:00Z sunxiaodong $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+<div class="form-div">
+{$lang.page_note}{$lang.total_records}{$record_count}{$lang.how_many_user}
+</div>
+
+<form method="POST" action="" name="listForm">
+
+<!-- start users list -->
+<div class="list-div" id="listDiv">
+{/if}
+<!--用户列表部分-->
+<table cellpadding="3" cellspacing="1">
+  <tr>
+    <th>ID</th>
+    <th>UserID</th>
+    <th>分佣比例</th>
+    <th>分佣金额</th>
+    <th>订单</th>
+    <th>订单金额</th>
+    <th>下单人</th>
+    <th>状态</th> 
+    <th>时间</th> 
+    <th>操作</th>
+  <tr>
+  {foreach from=$logdb item=d}
+  <tr>
+    <td>{$d.id}</td>
+    <td>{$d.expend_user_id}</td>
+    <td>{$d.expend_bili}</td>
+    <td>{$d.expend_amount}</td>
+    <td>{$d.order_id}{$d.order_sn}</td>
+    <td>{$d.order_amount}</td>
+    <td>{$d.user_id}</td>
+    <td>{$d.status_format}</td>
+    <td>{$d.ctime}</td>
+    <td align="center">
+	<!-- {if $d.status eq '0'}-->
+      <a href="fenxiao_list.php?act=push_expend_user&id={$d.id}" title="{$lang.edit}" class="btn-orange">确定</a>
+      <a href="javascript:confirm_redirect('取消此分佣?', 'fenxiao_list.php?act=cancel_expend_user&id={$d.id}')" title="取消分佣" class="btn-red">取消</a>
+	<!-- {/if}--> 
+    </td>
+  </tr>
+  {foreachelse}
+  <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
+  {/foreach}
+</table>
+
+{if $full_page}
+</div>
+<!-- end users list -->
+</form>
+<script type="text/javascript" language="JavaScript">
+<!--
+{literal}
+onload = function()
+{
+    document.forms['searchForm'].elements['keyword'].focus();
+    // 开始检查订单
+    startCheckOrder();
+}
+//-->
+</script>
+{/literal}
+{include file="pagefooter.htm"}
+{/if}

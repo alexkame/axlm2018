@@ -1,0 +1,110 @@
+<!-- $Id: ads_list.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+<div class="form-div">
+  <form action="javascript:search_ad()" name="searchForm">
+    <img src="images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH" />
+	<select name="shopid">
+		<option option='all'>所有</option>
+		{foreach from=$shoplist item=list}
+			<option value="{$list.id}">{$list.name}</option>
+		{/foreach}
+	</select>
+    关键字<input type="text" name="keyword" size="15" placeholder="请输入商品名称" />
+    <input type="submit" value="{$lang.button_search}" class="button" />
+  </form>
+</div>
+<script language="JavaScript">
+    function search_ad()
+    {
+		
+        listTable.filter['shopid'] = Utils.trim(document.forms['searchForm'].elements['shopid'].value);
+        listTable.filter['keyword'] = Utils.trim(document.forms['searchForm'].elements['keyword'].value);
+        listTable.filter['page'] = 1;
+        
+        listTable.loadList();
+    }
+
+</script>
+
+<form method="post" action="" name="listForm">
+<!-- start ads list -->
+<div class="list-div" id="listDiv">
+{/if}
+
+<table cellpadding="3" cellspacing="1">
+  <tr>
+    <th>ID</th>
+    <th>缩略图</th>
+    <th>商品名</th>
+    <th>商品描述</th>
+    <th>所属商户</th>
+    <th>添加时间</th>
+    <th>状态</th>
+    <th>{$lang.handler}</th>
+  </tr>
+  {foreach from=$list item=list}
+  <tr>
+   <td class="first-cell">{$list.id}</td>
+    <td align="center">
+		<div style="margin:4px; position:relative" onmousemove="open_af('{$list.goods_thumb}', 'block')" onmouseout="open_af('{$list.goods_thumb}', 'none')">
+		<img src="../data/shops_goods_imgs/{$list.goods_thumb}" width="50px" style="cursor:pointer"/>
+		<div id="open_af_{$list.goods_thumb}" style="display:none; position:absolute;left:70px;top:-2px; float:left; z-index:1000; border:#E5E5E5 solid 2px">
+		<img src="../data/shops_goods_imgs/{$list.goods_thumb}" />
+		</div>
+		</div>
+		<script language="javascript">
+		function open_af(m_id, m_t)
+		{
+			document.getElementById("open_af_" + m_id).style.display = m_t;
+		}
+		</script>
+    </td>
+	
+    <td class="first-cell">{$list.good_name}</td>
+    <td class="first-cell">{$list.goods_desc}</td>
+    <td align="left">{$list.shop_name}</td>
+    <td align="right"><span>{$list.ctime}</span></td>
+    <td align="right"><span>{if $list.status eq 1}已开启{elseif $list.status eq 2}已禁用{/if}</span></td>
+    <td align="right">
+		 <a href="shops_goods.php?act=edit&id={$list.id}" title="编辑" class="btn-blue">编辑</a>
+		  {if $list.status eq 2}
+		  <a href="shops.php?act=execstatus&status=1&id={$list.id}" title="启用" class="btn-blue">启用</a>
+		  {elseif $list.status eq 1}
+		  <a href="shops.php?act=execstatus&status=2&id={$list.id}" title="禁用" class="btn-blue">禁用</a>
+		  {/if}
+      <a href="shops.php?act=remove&id={$list.id}" title="删除" class="btn-blue">删除</a>
+    </td>
+  </tr>
+  {foreachelse}
+    <tr><td class="no-records" colspan="10">{$lang.no_ads}</td></tr>
+  {/foreach}
+  <tr>
+    <td align="right" nowrap="true" colspan="12">{include file="page.htm"}</td>
+  </tr>
+</table>
+
+{if $full_page}
+</div>
+<!-- end ad_position list -->
+</form>
+
+<script type="text/javascript" language="JavaScript">
+  listTable.recordCount = {$record_count};
+  listTable.pageCount = {$page_count};
+
+  {foreach from=$filter item=item key=key}
+  listTable.filter.{$key} = '{$item}';
+  {/foreach}
+  {literal}
+  onload = function()
+  {
+    // 开始检查订单
+    startCheckOrder();
+  }
+  {/literal}
+</script>
+{include file="pagefooter.htm"}
+{/if}

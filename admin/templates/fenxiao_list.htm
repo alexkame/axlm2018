@@ -1,0 +1,78 @@
+<!-- {if $full_page} -->
+<!-- $Id: users_list.htm 15617 2009-02-18 05:18:00Z sunxiaodong $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+<div class="form-div">
+{$lang.page_note}{$lang.total_records}{$record_count}{$lang.how_many_user}
+</div>
+
+<form method="POST" action="" name="listForm">
+
+<!-- start users list -->
+<div class="list-div" id="listDiv">
+<!-- {/if} -->
+<!--用户列表部分-->
+<table cellpadding="3" cellspacing="1">
+  <tr>
+    <th>ID</th>
+    <th>UserID</th>
+    <th>用户名</th>
+    <th>是否符合推广条件</th>
+    <th>分红等级</th> 
+    <th>直推人数</th>
+    <th>推广码</th>
+    <th>资金</th>
+    <th>佣金总金额</th>
+    <th>分红总金额</th>
+    <th>操作</th>
+  <tr>
+  {foreach from=$logdb item=d}
+  <tr>
+    <td>{$d.id}</td>
+    <td>{$d.user_id}</td>
+    <td class="first-cell">{$d.user_name}</td>
+    <td class="first-cell">{$d.is_valid_user}</td>
+    <td class="first-cell">{$d.bonus_proportional}</td>
+    <td>{$d.expend_user_amount}</td>
+    <td>{$d.expend_code}</td>
+    <td>{$d.user_money}</td>
+    <td>{$d.expend_amount}</td>
+    <td>{$d.bonus_amount}</td>
+   
+    <td align="center">
+      <a href="fenxiao_list.php?act=detail&id={$d.id}" title="{$lang.view_order}"><img src="images/icon_view.gif" border="0" height="16" width="16" /></a>
+	  
+    </td>
+	
+  </tr>
+  {foreachelse}
+  <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
+  {/foreach}
+</table>
+ <table cellpadding="4" cellspacing="0">
+    <tr>
+      <td align="right">{include file="page.htm"}</td>
+    </tr>
+  </table>
+  <!-- {if $full_page} -->
+</div>
+</form>
+<script type="Text/Javascript" language="JavaScript">
+listTable.recordCount = {$record_count};
+listTable.pageCount = {$page_count};
+
+{foreach from=$filter item=item key=key}
+listTable.filter.{$key} = '{$item}';
+{/foreach}
+
+<!-- {literal} -->
+onload = function()
+{
+  // 开始检查订单
+  startCheckOrder();
+}
+<!-- {/literal} -->
+</script>
+{include file="pagefooter.htm"}
+<!-- {/if} -->

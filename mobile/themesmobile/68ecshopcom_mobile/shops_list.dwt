@@ -1,0 +1,61 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>{$page_title}</title>
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<link rel="stylesheet" type="text/css" href="themesmobile/68ecshopcom_mobile/css/public.css">
+<link rel="stylesheet" type="text/css" href="themesmobile/68ecshopcom_mobile/css/brand_list.css">
+<script type="text/javascript" src="themesmobile/68ecshopcom_mobile/js/jquery.js"></script>
+<script type="text/javascript" src="themesmobile/68ecshopcom_mobile/js/TouchSlide.1.1.js"></script>
+{insert_scripts files='common.js,utils.js'}
+</head>
+<body class="body_bj">{insert name='add_url_uid'}
+<!-- 头部 start -->
+<header class="header">
+  <div class="tab_nav">
+      <div class="h-left"><a class="sb-back" href="javascript:history.back(-1)" title="返回"></a></div>
+      <div class="h-mid">爱心联盟商户</div>
+      <div class="h-right">
+        <aside class="top_bar">
+          <div onClick="show_menu();$('#close_btn').addClass('hid');" id="show_more"><a href="javascript:;"></a> </div>
+        </aside>
+      </div>
+  </div>
+</header>
+<!-- #BeginLibraryItem "/library/up_menu.lbi" --><!-- #EndLibraryItem --> <!--弹出菜单--> 
+<!--  头部 end --> 
+<!--头部广告--> 
+<div class="brand_img">
+<img src="themesmobile/68ecshopcom_mobile/images/shops_banner.jpg">
+</div> 
+
+<!-- 商品品牌广告图片 end-->
+<div class="ccontainer">
+  <div class="jxyh_logo"> 
+  {foreach from=$shops_list item=shop name=shop_foreach}
+	{if $shop.thumb}  
+    <a href="shops.php?id={$shop.id}" {if $smarty.foreach.shop_foreach.iteration %3}{else} style="border-right:1px solid #fff;"{/if}> 
+	<img src="/data/shopsimgs/{$shop.thumb}" alt="{$shop.name}" width="100%"> </a>
+	{else}
+	 <a href="shops.php?id={$shop.id}">{$shop.name}</a>
+    {/if}
+    {/foreach}
+     </div>
+</div>
+
+<!---返回顶部-->
+<script>
+function goTop(){
+	$('html,body').animate({'scrollTop':0},600);
+}
+</script>
+<a href="javascript:goTop();" class="gotop"><img src="themesmobile/68ecshopcom_mobile/images/topup.png"></a> 
+<!--底部 footer -->
+<div style="height:12px; line-height:12px; clear:both;"></div>
+<footer> <!-- #BeginLibraryItem "/library/page_footer.lbi" --> <!-- #EndLibraryItem --> <!-- #BeginLibraryItem "/library/footer_nav.lbi" --> <!-- #EndLibraryItem --> </footer>
+</body>
+</html>

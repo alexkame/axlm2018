@@ -1,0 +1,58 @@
+@charset "utf-8";
+/* CSS Document */
+.hy-person-left{
+	float:left; width:209px; text-align:center;
+}
+.hy-person-left-head{
+	width:100%; background-color:#ffab00; padding:15px 10px 10px;
+}
+.hy-person-left-head-head{
+	width:80px; height:80px; border:5px solid #fff; border-radius:40px; -webkit-border-radius:40px; -moz-border-radius:40px; -o-border-radius:40px;
+}
+.hy-person-left-head-name{
+	line-height:35px; color:#ff6600; font-size:15px;
+}
+.hy-person-left-head-button{
+	height:40px;
+}
+.hy-person-left-head-button1{
+	width:50%; line-height:40px; float:left; color:#fff; font-size:14px;
+}
+.hy-person-left-head-button1 img{
+	width:18px; height:18px; vertical-align:middle; margin:-2px 3px 0 0;
+}
+.hy-person-left-list{
+	width:209px; height:700px; background-color:#eee;
+}
+.hy-person-left-list-left{
+	margin:0; padding:0; width:100px; height:100%; background-color:#c9c9c9; position:relative; background-image:url(../images/axlm-personbg1.png); background-position:top; background-repeat:no-repeat; background-size:100%;
+}
+.hy-person-left-list-left li{
+	width:100%; height:30px; font-size:12px; font-weight:bold; color:#000; padding-top:80px; background-position:top; background-repeat:no-repeat; background-size:100%;
+        text-align: center;
+}
+.hy-person-left-list-left li.hy-person-listbg1{
+	background-image:url(../images/axlm-person-icon1.png);
+}
+.hy-person-left-list-left li.hy-person-listbg2{
+	background-image:url(../images/axlm-person-icon2.png);
+}
+.hy-person-left-list-left li.hy-person-listbg3{
+	background-image:url(../images/axlm-person-icon3.png);
+}
+.hy-person-left-list-right{
+	margin:0; padding:0; width:110px; position:absolute; left:100px; top:0;
+}
+.hy-person-left-list-right li{
+	display:none; width:100%; height:65px; font-weight:normal; line-height:65px; font-size:14px; padding:0; border-bottom:1px solid #c9c9c9; background-image:url(../images/axlm-person-icon4.png); background-position:top right; background-size:30px 65px;
+}
+li.hy-person-left-list-left-active,.hy-person-left-list-left li:hover{
+	background-color:#eee; box-shadow:2px 2px 5px #595959; background-position:bottom right; color:#ff5400;
+        text-align:center;
+}
+.hy-person-left-list-left-active .hy-person-left-list-right li{
+	display:block;
+}
+li.hy-person-left-list-right-active,.hy-person-left-list-right li:hover{
+	color:#ff5400; background-color:#f4dfc0; box-shadow:1px 1px 3px #595959;
+}

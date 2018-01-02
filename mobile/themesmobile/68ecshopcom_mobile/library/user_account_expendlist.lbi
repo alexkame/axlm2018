@@ -1,0 +1,31 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!---------推广会员列表记录----------->
+<div class="Funds">
+<h2><span>有效会员人数：</span><em>{$baseinfo.expend_user_amount}人</em></h2>
+<h3><em>总推广会员人数：</em>{$baseinfo.expend_user_total}人</h3>
+</div>
+
+<!--{if $list}-->
+<!--{foreach from=$list item=item}-->
+<div class="detail_m">
+<dl>
+<h2><span>状态：{$item.is_valid_user}</span><em>{$item.expend_ctime}</em></h2>
+<dt><em>用户名：</em><span>{$item.user_name}</span></dt>
+</dl>
+</div>
+<!--{/foreach}-->       
+{else}
+  <div class="dotm_no">
+  <dl>
+    <dd>您目前还没有推广记录哦！</dd>
+  </dl>
+</div>
+<!--{/if}-->
+
+<!---返回顶部-->
+<script>
+function goTop(){
+	$('html,body').animate({'scrollTop':0},600);
+}
+</script>
+<a href="javascript:goTop();" class="gotop"><img src="themesmobile/68ecshopcom_mobile/images/topup.png"></a> 

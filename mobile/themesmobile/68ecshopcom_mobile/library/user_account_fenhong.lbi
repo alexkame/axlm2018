@@ -1,0 +1,31 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!---------分红记录----------->
+<div class="Funds">
+<h2><span>累计分红总额</span><em>{$baseinfo.bonus_amount_format}</em></h2>
+<h3>当前分红比例：：{$baseinfo.bonus_proportional_format}</h3>
+</div>
+<!--{if $list}-->
+<!--{foreach from=$list item=item}-->
+<div class="detail_m">
+<dl>
+<h2><span>编号：{$item.id}</span><em>{$item.ctime}</em></h2>
+<dt><em><b>分红：</b></em><span>{$item.bonus_money_format}</span></dt>
+<dt><em><b>分红周期：</b></em>{$item.stime} - {$item.etime}</dt>
+</dl>
+</div>
+<!--{/foreach}-->       
+{else}
+  <div class="dotm_no">
+  <dl>
+    <dd>您目前还没有分红记录哦！</dd>
+  </dl>
+</div>
+<!--{/if}-->
+
+<!---返回顶部-->
+<script>
+function goTop(){
+	$('html,body').animate({'scrollTop':0},600);
+}
+</script>
+<a href="javascript:goTop();" class="gotop"><img src="themesmobile/68ecshopcom_mobile/images/topup.png"></a> 

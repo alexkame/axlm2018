@@ -1,0 +1,91 @@
+<!-- $Id: ads_info.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+{include file="pageheader.htm"}
+<script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
+<link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
+<div class="main-div">
+    <form action="shops_goods.php" method="post" name="theForm" enctype="multipart/form-data" onsubmit="return validate()">
+        <table width="100%" id="general-table">
+			{if $info.goods_thumb}
+           <tr>
+                <td  class="label">商品图片</td>
+				<td>
+					<img src="../data/shops_goods_imgs/{$info.goods_thumb}" style="max-width:200px;"/>
+                </td>
+            </tr>
+			{/if}
+            <tr>
+                <td  class="label">所属商户</td>
+				<td>
+                   <select name="shops_id">
+					{foreach from=$shoplist item=list}
+						<option value="{$list.id}" {if $list.id eq $info.shops_id}selected{/if}>{$list.name}</option>
+					{/foreach}
+					</select>
+			<span class="require-field">*</span>
+                </td>
+            </tr>
+			<tr>
+                <td  class="label">商品名</td>
+				<td>
+                    <input type="text" name="good_name" value="{$info.good_name}" size="35" /><span class="require-field">*</span>
+					<span class="notice-span" style="display:block" >商品名不能为空</span>
+                </td>
+            </tr>
+            <tr>
+                <td  class="label">商品简介</td>
+                <td>
+                    <textarea name="goods_desc" rows="3" cols="48">{$info.goods_desc}</textarea>
+                </td>
+            </tr>
+			
+            <tr>
+                <td  class="label">上传图片</td>
+                <td>
+                    <input type='file' name='thumb' size='35' />
+                </td>
+            </tr>
+			
+            <tr>
+                <td  class="label">{$lang.enabled}</td>
+                <td>
+                    <input type="radio" name="status" value="1" {if $info.status eq 1} checked="true" {elseif $info.status eq ''}checked="true"{/if} />可用
+                    <input type="radio" name="status" value="2" {if $info.status eq 2} checked="true" {/if} />禁用
+                </td>
+            </tr>
+           
+			
+            <tr>
+                <td class="label">&nbsp;</td>
+                <td>
+                    <input type="submit" value="{$lang.button_submit}" class="button" />
+                    <input type="reset" value="{$lang.button_reset}" class="button" />
+                    <input type="hidden" name="act" value="insert" />
+                    <input type="hidden" name="id" value="{$info.id}" />
+                </td>
+            </tr>
+        </table>
+
+    </form>
+</div>
+{insert_scripts files="../js/utils.js,validator.js"}
+<script language="JavaScript">
+     /**
+     * 检查表单输入的数据
+     */
+    function validate()
+    {
+        
+        return true;
+    }
+
+    onload = function()
+    {
+        // 开始检查订单
+        startCheckOrder();
+        document.forms['theForm'].reset();
+    }
+
+    //-->
+    {/literal}
+</script>
+{include file="pagefooter.htm"}

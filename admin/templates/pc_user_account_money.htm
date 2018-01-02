@@ -1,0 +1,102 @@
+<!-- $Id: shop_config.htm 16865 2009-12-10 06:05:32Z sxc_shop $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,../js/region.js"}
+<style>
+a.btn.orange{
+	background:#fa841e;
+	color:#fff;
+}
+a.btn.green{
+	background:#70B759;
+	color:#fff;
+}
+</style>
+<div class="tab-div">
+  <!-- tab bar -->
+  <div id="tabbar-div">
+    <p>
+	<a href="pc_users.php?act=list"><input name="button" type="button" value="< 返回" class="button" /></a>
+     <span class="tab-front" id="tab">用户金融账号</span>
+    </p>
+  </div>
+  <!-- tab body -->
+  <div id="tabbody-div">
+    <form enctype="multipart/form-data" name="theForm" action="?act=post" method="post">
+   <!-- 返现设置 -->
+    <table width="90%">
+		<tbody>
+				<tr>
+					<td class="label" valign="top">用户名</td>
+					<td style="width:170px;">
+						<input name="username" type="text" value="{$userinfo.user_name}" style="min-width:150px;width:150px;" disabled>
+					</td>
+					<td style="text-align:left;padding-left:10px;"></td>
+				</tr>
+				<tr>
+					<td class="label" valign="top">手机号</td>
+					<td style="width:170px;">
+						<input name="mobile_phone" type="text" value="{$userinfo.mobile_phone}" style="min-width:150px;width:150px;" disabled>
+					</td>
+					<td style="text-align:left;padding-left:10px;"></td>
+				</tr>
+				<tr>
+					<td class="label" valign="top">现金币</td>
+					<td style="width:170px;">
+						<input name="account_xianjinbi" type="text" value="{$userinfo.account_xianjinbi}" style="min-width:150px;width:150px;" disabled>
+					</td>
+					<td style="text-align:left;padding-left:10px;">
+						<a class="notice-span btn orange" href="/admin/pc_user_account_money_change.php?act=default&type=xianjinbi&uid={$userinfo.uid}" >调整</a> 
+						<a class="notice-span btn green" style="margin-left:10px;" href="/admin/pc_user_account_money_log.php?act=default&type=xianjinbi&uid={$userinfo.uid}" >查看Log</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="label" valign="top">消费币</td>
+					<td style="width:170px;">
+						<input name="account_xiaofeibi" type="text" value="{$userinfo.account_xiaofeibi}" style="min-width:150px;width:150px;" disabled>
+					</td>
+					<td style="text-align:left;padding-left:10px;">
+						<a class="notice-span btn orange" href="/admin/pc_user_account_money_change.php?act=default&type=xiaofeibi&uid={$userinfo.uid}" >调整</a> 
+						<a class="notice-span btn green" style="margin-left:10px;" href="/admin/pc_user_account_money_log.php?act=default&type=xiaofeibi&uid={$userinfo.uid}" >查看Log</a>
+					
+					</td>
+				</tr>
+				<tr>
+					<td class="label" valign="top">爱心币</td>
+					<td style="width:170px;">
+						<input name="account_aixinbi" type="text" value="{$userinfo.account_aixinbi}" style="min-width:150px;width:150px;" disabled>					
+					</td>
+					<td style="text-align:left;">
+						<!-- <a class="notice-span btn orange" href="/admin/pc_user_account_money_change.php?act=default&type=aixinbi&uid={$userinfo.uid}" >调整</a> -->
+						<a class="notice-span btn green" style="margin-left:10px;" href="/admin/pc_user_account_money_log.php?act=default&type=aixinbi&uid={$userinfo.uid}" >查看Log</a>
+					
+					</td>
+				</tr>
+				<tr>
+					<td class="label" valign="top">积分币</td>
+					<td style="width:170px;">
+						<input name="account_jifenbi" type="text" value="{$userinfo.account_jifenbi}" style="min-width:150px;width:150px;" disabled>			
+					</td>
+					<td style="text-align:left;">
+						<a class="notice-span btn orange" href="/admin/pc_user_account_money_change.php?act=default&type=jifenbi&uid={$userinfo.uid}" >调整</a>
+						<a class="notice-span btn green" style="margin-left:10px;" href="/admin/pc_user_account_money_log.php?act=default&type=jifenbi&uid={$userinfo.uid}" >查看Log</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="label" valign="top">积分</td>
+					<td style="width:170px;">
+						<input name="account_jifen" type="text" value="{$userinfo.account_jifen}" style="min-width:150px;width:150px;" disabled>	
+					</td>
+					<td style="text-align:left;">
+						<!--<a class="notice-span btn orange" href="/admin/pc_user_account_money_change.php?act=default&type=jifen&uid={$userinfo.uid}" >调整</a> -->
+						<a class="notice-span btn green" style="margin-left:10px;" href="/admin/pc_user_account_money_log.php?act=default&type=jifen&uid={$userinfo.uid}" >查看Log</a>
+					
+					</td>
+				</tr>		
+        </tbody>
+    </table>
+
+    </form>
+  </div>
+</div>
+{insert_scripts files="tab.js,validator.js"}
+{include file="pagefooter.htm"}

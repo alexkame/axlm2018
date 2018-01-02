@@ -1,0 +1,94 @@
+<!-- {if $full_page} -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+
+<div class="list-div" id="listDiv" style="margin-bottom:30px;">
+<!--<a class='btn-red' href="?act=day">今日交易额</a>
+{if $is_finished eq '0'}<a class='btn-orange' href="?act=daytrade">执行今日返现</a>{/if}-->
+<!--
+<p style="font-size:14px;color:#fa841e;">今日交易： 共支付{$order_total}个订单， 订单总金额{$order_total_amount}
+    <br>
+<form action="?act=daytrade">
+    分红比例：<input type="text" id="fenhong_bili" name="fenhong_bili" value="{$rand_fenhong_bili}" style="width:100px;"/>
+        <input type="hidden" name="act" value="daytrade" />
+        <input type="submit" class='btn-orange' style="background:#fa841e;color:#fff;margin-left:20px;border:none;cursor:pointer;padding:5px;" value="今日分红金额累计到分红池金额" />
+        <p>备注：分红比例是系统自动生成随机数字，范围5%-10%.</p>
+</form>
+</p>
+<hr>
+-->
+<p style="font-size:14px;color:#fa841e;">分红池金额： 共{$fenhongchi}金额，共{$fenhong_total_user}分红用户，总计{$fenhong_total_dian}分红点
+    <br>
+    <form action="?act=dayfenhong">
+        每个分红点金额：<input type="text" id="fenhong_user_money" name="fenhong_user_money" value="" style="width:100px;"/>
+            <input type="hidden" name="act" value="dayfenhong" />
+            <input type="hidden" name="fenhong_total_dian" value="{$fenhong_total_dian}" />
+            <input type="hidden" name="fenhongchi" value="{$fenhongchi}" />
+            <input type="submit" class='btn-orange' style="background:#fa841e;color:#fff;margin-left:20px;border:none;cursor:pointer;padding:5px;" value="今日分红给用户" />
+    </form>
+    <p>备注：分红金额累计到用户的消费币中</p>
+</p>
+</div>
+
+
+<div class="form-div">
+{$lang.page_note}{$lang.total_records}{$record_count}{$lang.how_many_user}
+</div>
+
+<form method="POST" action="" name="listForm">
+
+<!-- start users list -->
+<div class="list-div" id="listDiv">
+<!-- {/if} -->
+<!--分红列表部分-->
+<table cellpadding="3" cellspacing="1">
+  <tr>
+    <th>ID</th>
+    <th>分红日期</th>
+    <th>总分红点</th>
+    <th>分红总额</th>
+    <th>分红人数</th>
+    <th>单个分红点金额</th>
+    <th>操作</th>
+  <tr>
+  {foreach from=$list item=d}
+  <tr>
+    <td>{$d.id}</td>
+    <td>{$d.fenhong_date}</td>
+    <td>{$d.fenhong_total}</td>
+    <td>{$d.fenhong_money}</td>
+    <td>{$d.fenhong_user_total}</td>
+    <td>{$d.fenhong_dian_money}</td>
+    <td><a class="btn-blue" href="?act=detail&id={$d.id}">查看</td>
+  </tr>
+  {foreachelse}
+  <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
+  {/foreach}
+</table>
+ <table cellpadding="4" cellspacing="0">
+    <tr>
+      <td align="right">{include file="page.htm"}</td>
+    </tr>
+  </table>
+  <!-- {if $full_page} -->
+</div>
+</form>
+<script type="Text/Javascript" language="JavaScript">
+listTable.recordCount = {$record_count};
+listTable.pageCount = {$page_count};
+
+{foreach from=$filter item=item key=key}
+listTable.filter.{$key} = '{$item}';
+{/foreach}
+
+<!-- {literal} -->
+onload = function()
+{
+  // 开始检查订单
+  startCheckOrder();
+}
+<!-- {/literal} -->
+</script>
+{include file="pagefooter.htm"}
+<!-- {/if} -->

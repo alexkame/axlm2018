@@ -1,0 +1,6 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+{if $shops_list}
+{foreach from=$shops_list item=shop name=shop}
+<li class="image"><a href="shops.php?id={$shop.id}" title="{$shop.name|escape:html}"><img src="/data/shopsimgs/{$shop.thumb}"/></a></li>
+{/foreach}
+{/if}

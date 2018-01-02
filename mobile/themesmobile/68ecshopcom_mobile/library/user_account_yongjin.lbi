@@ -1,0 +1,34 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!---------佣金记录----------->
+<div class="Funds">
+<h2><span>总佣金：</span><em>{$baseinfo.expend_amount_format}</em></h2>
+<h3>即将到账的佣金：{$baseinfo.expend_amount_rest}</h3>
+</div>
+
+<!--{if $list}-->
+<!--{foreach from=$list item=item}-->
+<div class="detail_m">
+<dl>
+<h2><span>状态：{$item.status_label}</span><em>{$item.ctime}</em></h2>
+<dt><em>佣金：</em><span>{$item.expend_amount}</span></dt>
+<dd>
+<span>来源订单：{$item.order_sn}</span>
+</dd>
+</dl>
+</div>
+<!--{/foreach}-->       
+{else}
+  <div class="dotm_no">
+  <dl>
+    <dd>您目前还没有佣金记录哦！</dd>
+  </dl>
+</div>
+<!--{/if}-->
+
+<!---返回顶部-->
+<script>
+function goTop(){
+	$('html,body').animate({'scrollTop':0},600);
+}
+</script>
+<a href="javascript:goTop();" class="gotop"><img src="themesmobile/68ecshopcom_mobile/images/topup.png"></a> 

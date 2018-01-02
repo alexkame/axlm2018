@@ -1,0 +1,17 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="themes/axlmpc/css/68ecshop_common.css?v=1" />
+<script language="javascript"> 
+<!--
+/*屏蔽所有的js错误*/
+function killerrors() { 
+return true; 
+} 
+window.onerror = killerrors; 
+//-->
+</script>
+<script type="text/javascript" src="themes/axlmpc/js/page.js"></script>
+<script type="text/javascript" src="themes/axlmpc/js/bubbleup.js"></script>
+{include file='library/user_header.lbi'}
+<div class="" style="text-align:center;border-bottom:2px solid #f28202">
+	{include file='library/page_header_short.lbi'}
+</div>
