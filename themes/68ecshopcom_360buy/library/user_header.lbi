@@ -23,6 +23,7 @@
       <li class="sn-cart mini-cart menu"> 
         <a id="mc-menu-hd" class="sn-cart header-icon main-color" href="flow.php" target="_top" rel="nofollow"><i></i>购物车</a> 
       </li>
+	  
       <li class="sn-favorite menu-item">
         <div class="sn-menu"> 
           <a class="menu-hd" href="user.php?act=collection_list" target="_top" rel="nofollow">收藏夹<b></b></a>
@@ -34,7 +35,7 @@
           </div>
         </div>
       </li>
-      <li class="sn-separator"></li>
+      <!--<li class="sn-separator"></li>-->
       <script type="text/javascript">
 		function show_qcord(){
 			var qs=document.getElementById('sn-qrcode');
@@ -45,6 +46,8 @@
 			qs.style.display="none";
 		}
 	  </script>
+	  
+	  <!--
       <li class="menu-item">
         <div class="sn-menu"> 
           <a class="menu-hd sn-mobile" href="" target="_top">手机版<b></b></a>
@@ -59,6 +62,7 @@
           </div>
         </div>
       </li>
+	  
       <li class="sn-seller menu-item">
         <div class="sn-menu">
         <a class="menu-hd" href="" target="_top">商家支持<b></b></a>
@@ -78,6 +82,7 @@
         </div>
         </div>
       </li>
+	  -->
     </ul>
   </div>
 </div>

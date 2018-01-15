@@ -76,16 +76,16 @@
 		</script>
 			<div class="log_reg_box">
 				<ul class="tab clearfix" id="logRegTab">
-					<li id="mob_log" class="curr">
+					<li id="mob_log" class="curr" style="width:100%;">
 						<span>
 							<font>手机注册</font>
 						</span>
 					</li>
-					<li id="acc_log" class="curr currr">
+					<!--<li id="acc_log" class="curr currr">
 						<span>
 							<font>邮箱注册</font>
 						</span>
-					</li>
+					</li>-->
 				</ul>
 				<div id="logRegTabCon">
 					<div class="log_reg_item" id="phonearea">

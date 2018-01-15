@@ -1,17 +1,18 @@
 <link href="/themes/axlmpc/axlm_new/css/header.css?v=1" rel="stylesheet" type="text/css">
+
      <header class="hy-header" style="font-size:12px;">
         <div class="hy-header-content">
-            <ul>
-                <a href="index.php"><li class="hy-header-active">首页</li></a>
-                <!--<a href="catalog.php"><li>产品中心</li></a>-->
-                <a href="search.php"><li>产品中心</li></a>
-                <a href="stores.php"><li>联盟商家</li></a>
+            <ul> 
+                <a href="index.php"><li <!--{if $script_name eq 'index.php'} -->class="hy-header-active"<!--{/if}-->>首页</li></a>
+                <!--<a href="catalog.php">产品中心</li></a>-->
+                <a href="search.php"><li <!--{if $script_name eq 'search.php' || $script_name eq 'goods.php' || $script_name eq 'category'} -->class="hy-header-active"<!--{/if}-->>产品中心</li></a>
+                <a href="stores.php"><li <!--{if $script_name eq 'stores.php' || $script_name eq 'supplier.php'} -->class="hy-header-active"<!--{/if}-->>联盟商家</li></a>
             </ul>
             <img class="hy-header-logo" src="/themes/axlmpc/axlm_new/images/axlm-logo.png" style="margin-top:10px;">
             <ul class="hy-header-right">
-                <a href="article_list.php"><li>新闻资讯</li></a>
-                <a href="help.php"><li>使用教程</li></a>
-                <a href="user.php"><li class="hy-header-person"><img class="hy-header-person-icon" src="/themes/axlmpc/axlm_new/images/axlm-person.png">个人中心</li></a>
+                <a href="article_list.php"><li <!--{if $script_name eq 'article_list.php'} -->class="hy-header-active"<!--{/if}-->>新闻资讯</li></a>
+                <a href="help.php"><li <!--{if $script_name eq 'help.php'} -->class="hy-header-active"<!--{/if}-->>使用教程</li></a>
+                <a href="user.php"><li class="hy-header-person <!--{if $script_name eq 'user.php'} -->hy-header-active<!--{/if}-->"><img class="hy-header-person-icon" src="/themes/axlmpc/axlm_new/images/axlm-person.png">个人中心</li></a>
             </ul>
         </div>
     </header>

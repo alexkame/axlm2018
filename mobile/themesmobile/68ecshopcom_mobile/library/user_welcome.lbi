@@ -26,11 +26,13 @@
             </li>
           </ul>
         </div>
+		<!--
 		<div class="name">
           <label for="hyk_ep"> <span>会员卡号</span>
             <input name="huiyuanka" value="{$huiyuanka}" id="hyk_ep" placeholder="请填如会员卡号" type="text" />
           </label>
         </div>
+		-->
         <!--
         <div class="name">
           <label for="email_ep"> <span>邮箱</span>

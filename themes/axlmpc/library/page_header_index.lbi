@@ -23,7 +23,6 @@ window.onerror = killerrors;
       <div class="mallSearch-input">
         <ul class="search-type">
           <li {if $smarty.request.type ==0}class="cur"{/if} num="0">宝贝<i class="icon-down"></i></li>
-         <!-- <li {if $smarty.request.type ==1}class="cur"{/if} num="1">店铺<i class="icon-down"></i></li>-->
         </ul>
         <div class="s-combobox">
           <div class="s-combobox-input-wrap">
@@ -33,11 +32,13 @@ window.onerror = killerrors;
         <input type="submit" value="搜索" class="button main-bg-color"  >
       </div>
     </form>
+	<!--
     <ul class="hot-query" >
       {foreach from=$searchkeywords item=val name=name}
       <li {if $smarty.foreach.name.first}style="border-left: none;"{/if}> <a href="search.php?keywords={$val|escape:url}" title="{$val}">{$val}</a> </li>
       {/foreach}
     </ul>
+	-->
   </div>
 		{include file='library/user_header_right.lbi'} 
 	</div>
