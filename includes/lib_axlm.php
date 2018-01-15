@@ -35,20 +35,29 @@ function axlmpc($user_id,$order_id,$order_amount,$good_amount,$paytype=''){
             $good_amount = $is_zhuanqu_product;
             
             //只有用户二次购物，且够6000的也返积分，这里需要判断是否是二次购物，也就是账户已经激活了
-            if($good_amount > 6000 && $pcuserinfo['status'] == 1){
-                pc_set_guanli_butie($user_id,"goods");
-                save_jifenbi_fanli($user_id,$good_amount/2,'购物赠积分币'); //二次进货打五折
-                //step 8: 服务中心补贴，升级后， 查看是否给服务中心返利
-                if($fuwuzhongxin_user_id){
-                    pc_set_fuwuzhongxin_butie($fuwuzhongxin_user_id,$good_amount/2);
-                }
-            }else{
-                save_jifenbi_fanli($user_id,$good_amount,'购物赠积分币');
+			if($pcuserinfo['status'] == 1){
+				 if($good_amount > 6000){
+					pc_set_guanli_butie($user_id,"goods");
+					save_jifenbi_fanli($user_id,$good_amount/2,'购物赠积分币'); //二次进货打五折
+					//step 8: 服务中心补贴，升级后， 查看是否给服务中心返利
+					if($fuwuzhongxin_user_id){
+						pc_set_fuwuzhongxin_butie($fuwuzhongxin_user_id,$good_amount/2);
+					}
+				}else{ //如果二次进货，但是不够6000，则不积分 ， changed 2018-01-15
+					//step 8: 服务中心补贴，升级后， 查看是否给服务中心返利
+					if($fuwuzhongxin_user_id){
+						pc_set_fuwuzhongxin_butie($fuwuzhongxin_user_id,$good_amount/2);
+					}
+				}
+			
+			}else{//账户未激活
+				save_jifenbi_fanli($user_id,$good_amount,'购物赠积分币');
                 //step 8: 服务中心补贴，升级后， 查看是否给服务中心返利
                 if($fuwuzhongxin_user_id){
                     pc_set_fuwuzhongxin_butie($fuwuzhongxin_user_id,$good_amount);
                 }
-            }
+			}
+            
             
         }else{ //不是专区的产品才给推荐奖励
             //step 9: 购物给直推人返利,购买非专区的产品才给直推人返利
