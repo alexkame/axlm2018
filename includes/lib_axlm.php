@@ -23,6 +23,10 @@ function axlmpc($user_id,$order_id,$order_amount,$good_amount,$paytype=''){
     $fuwuzhongxin_user_id = $pcuserinfo['fuwuzhongxin_user_id'];
 
     if($order_id){
+		//生成订单后，即激活账户
+		$active_sql = "update ".$ecs->table("pc_user")." set status = 1 where uid = $user_id ";
+        $db->query($active_sql);
+		
         //获得该订单中女性专区的产品总金额
         $is_zhuanqu_product = check_zhuanqu_product($order_id);
 //        echo $is_zhuanqu_product."]]]]";

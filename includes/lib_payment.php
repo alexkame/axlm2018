@@ -182,7 +182,7 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '')
 	                       "WHERE order_id = '$order_id'";
 	                $GLOBALS['db']->query($sql);
                         
-			axlmpc($_SESSION['user_id'],$order['order_id'],$order['order_amount'],$order['goods_amount'],$order['pay_name']);
+					axlmpc($_SESSION['user_id'],$order['order_id'],$order['order_amount'],$order['goods_amount'],$order['pay_name']);
                          
 	                /* 记录订单操作记录 */
 	                order_action($order_sn, OS_CONFIRMED, SS_UNSHIPPED, $pay_status, $note, $GLOBALS['_LANG']['buyer']);
