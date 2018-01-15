@@ -232,6 +232,63 @@
 			  </div>
 			</div>
    <!-- {/if} -->
+    <!-- {if $exec eq 'zhuanzhang_lianmengshangjia'}-->
+			<div class="box"> 
+			  <div class="tabmenu">
+				<ul class="tab pngFix">
+				  <li class="first active"><a>转账</a></li>
+				</ul>
+			  </div>
+			  <div class="mar_top">
+			  <div id="find-box" class="uc_box">
+				<!-- {if $step eq 'default'} -->
+					<form action="account.php" method="post" id="fpForm" name="fpForm">
+						  <div id="error_container"><!--{if $msg neq ''}-->{$msg}<!-- {/if} --></div>
+						  <div class="item">
+							<label class="con_un">请输入二级支付密码：</label>
+							<input type="password" id="pwd2" name="pwd2" class="text"  autocomplete="off"  />
+						  </div>
+						  <div class="item">
+							<label class="con_un">&nbsp;</label>
+							<input type="hidden" name="act" value="zhuanzhang_lianmengshangjia" />
+							<input type="hidden" name="step" value="checkpwd" />
+							<input type="hidden" name="touser" value="{$touser}" />
+							<input type="submit" name="button" id="btn_submit" class="main-btn main-btn-large" value="提交" />
+						  </div>
+					</form>
+				<!-- {elseif $step eq 'zhuanzhang'} -->
+					<form action="account.php" method="post" id="fpForm" name="fpForm">
+						  <div id="error_container"><!--{if $msg neq ''}-->{$msg}<!-- {/if} --></div>
+						  <div class="item">
+							<label class="con_un">转给联盟商家：</label>
+							<input type="text" id="touser" name="touser" value="{$tousername}" class="text" onblur="getUserShortInfo(this);" autocomplete="off" placeholder="请输入用户名"  />
+							 <span class="uinfo"></span>
+						  </div>
+						  <div class="item">
+							<label class="con_un">转账消费币：</label>
+							<input type="text" id="amount" name="amount" value="" class="text"  autocomplete="off"  />
+						  </div>
+						  <div class="item">
+							<label class="con_un">&nbsp;</label>
+							<input type="hidden" name="act" value="zhuanzhang_lianmengshangjia" />
+							<input type="hidden" name="step" value="zhuanzhang" />
+							
+							<input type="submit" name="button" id="btn_submit" class="main-btn main-btn-large" value="提交" />
+						  </div>
+					</form>
+				<!-- {elseif $step eq 'success'} -->
+						
+						 <div id="find-box" class="uc_box">
+							<div class="find_box_end">
+									<p>转账成功</p>
+									<p class="on_go"> <a href="user.php" title="" class="back">返回用户中心&gt;&gt;</a> </p>
+							</div>
+						</div>
+				<!-- {/if} -->
+				</div>
+			  </div>
+			</div>
+   <!-- {/if} -->
 <!-- {if $exec eq 'zhuanzhanglog'}-->
 			<div class="box"> 
 			  <div class="tabmenu">
@@ -248,6 +305,7 @@
 					<td bgcolor="#ffffff">ID</td>
 					<td bgcolor="#ffffff">转给用户ID</td>
 					<td bgcolor="#ffffff">转给用户</td>
+					<td bgcolor="#ffffff">类型</td>
 					<td bgcolor="#ffffff">金额</td>
 					<td bgcolor="#ffffff">时间</td>
 				  </tr>
@@ -256,6 +314,15 @@
 					<td bgcolor="#ffffff">{$val.id}</td>
 					<td bgcolor="#ffffff">{$val.from_uid}</td>
 					<td bgcolor="#ffffff">{$val.user_name}</td>
+					<td bgcolor="#ffffff">
+					<!-- {if $val['type'] eq 'account_xiaofeibi'}-->
+						消费币
+					<!-- {/if} -->
+						
+					<!-- {if $val['type'] eq 'account_xianjinbi'}-->
+						现金币
+					<!-- {/if} -->
+					</td>
 					<td bgcolor="#ffffff">{$val.amount}</td>
 					<td bgcolor="#ffffff">
 						{$val.time_format}
@@ -275,6 +342,7 @@
 			  </div>
 			  <div class="mar_top">
 				<a href="account.php?act=zhuanzhang&touser=" class="main-btn main-btn-large">转账给其他人</a>
+				<a href="account.php?act=zhuanzhang_lianmengshangjia&touser=" class="main-btn main-btn-large">转账给联盟商家</a>
 				<a href="account.php?act=zhuanzhanglog" style="float:right;color:#ed6803;">转账记录</a>
 				<div style="margin:10px 0px;text-align:right;">
                                 <form action="account.php" method="get">
@@ -517,5 +585,29 @@ $(function(){
 		
 	})	
 })
+
+function getUserShortInfo(e){
+    var v = $(e).val();
+	
+    if(v){
+        $.post('user.php?act=getUserShortInfo', {
+		uname: v
+	}, function(result) {
+
+            //alert(result);
+                //alert(result.msg);
+		if (result.status == 'success') {
+                    //$(e).parent().find('span').text("该用户信息为：【"+result.data.user_id+"】 "+result.data.user_name+" "+result.data.mobile_phone+", 请核实");
+                    $(e).parent().find('span').html("&nbsp;&nbsp;该用户信息为：【<i style='color:#E4393C'>"+result.data.user_name+"</i>】【<i style='color:#E4393C'>"+result.data.mobile_phone+"</i>】【<i style='color:#E4393C'>店名："+result.data.shopname+"</i>】, 请核实");
+                    $(e).next().val(result.data.user_id);
+		}else{
+                    $(e).parent().find('span').text(result.msg);
+                    $(e).val('');
+                    $(e).next().val('');
+		}
+	}, 'Json');
+    }
+}
+
 </script>
 </html>

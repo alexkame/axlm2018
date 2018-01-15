@@ -110,6 +110,8 @@ if (!get_magic_quotes_gpc())
     $_REQUEST  = addslashes_deep($_REQUEST);
 }
 
+
+
 /* 创建 ECSHOP 对象 */
 $ecs = new ECS($db_name, $prefix);
 define('DATA_DIR', $ecs->data_dir());
@@ -206,6 +208,13 @@ if (!defined('INIT_NO_SMARTY'))
 
     $smarty->assign('lang', $_LANG);
     $smarty->assign('ecs_charset', EC_CHARSET);
+	
+	$script_name = $_SERVER['SCRIPT_NAME'];
+	$script_name = str_replace("/","",$script_name);
+	$smarty->assign('script_name', $script_name);
+	
+	
+	
     if (!empty($_CFG['stylename']))
     {
         $smarty->assign('ecs_css_path', 'themes/' . $_CFG['template'] . '/style_' . $_CFG['stylename'] . '.css');

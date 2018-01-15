@@ -40,13 +40,13 @@ $back_act = '';
 *
 */
 $not_login_arr = array(
-	'default', 'detaillog','show_expend_users','zhuanzhang','zhuanzhanglog','fenhonglog'
+	'default', 'detaillog','show_expend_users','zhuanzhang','zhuanzhang_lianmengshangjia','zhuanzhanglog','fenhonglog'
 );
 /* 余额额支付密码_更改_END_www.cfweb2015.com */
 
 /* 显示页面的action列表 */
 $ui_arr = array(
-	'default', 'detaillog','show_expend_users','zhuanzhang','zhuanzhanglog','shenqingshop'
+	'default', 'detaillog','show_expend_users','zhuanzhang','zhuanzhang_lianmengshangjia','zhuanzhanglog','shenqingshop'
 ); // 代码修改
 
 /* 未登录处理 */
@@ -407,6 +407,93 @@ function action_zhuanzhang(){
 	
 	$smarty->display('user_account.dwt');
 }
+//转账消费币给联盟商家
+function action_zhuanzhang_lianmengshangjia(){
+	
+	// 获取全局变量
+	$_LANG = $GLOBALS['_LANG'];
+	$smarty = $GLOBALS['smarty'];
+	$db = $GLOBALS['db'];
+	$ecs = $GLOBALS['ecs'];
+	$user_id = $_SESSION['user_id'];
+	
+	$xiaofeibi = $db->getOne('select account_xiaofeibi from '.$ecs->table('pc_user')." where uid = $user_id");
+	$xiaofeibi = intval($xiaofeibi?$xiaofeibi:0);
+	
+	//echo 'select pwd2 from '.$ecs->table('pc_user')." where uid = $user_id";
+	$pwd2 = $db->getOne('select pwd2 from '.$ecs->table('pc_user')." where uid = $user_id");
+	$curstep = isset($_REQUEST['step'])?$_REQUEST['step']:'';
+	$touser = isset($_REQUEST['touser'])?$_REQUEST['touser']:0;
+        $tousername = $touser;
+//        $tousername = '';
+//        if($touser){
+//            $tousername = $db->getOne('select user_name from '.$ecs->table('users')." where user_id = $touser");
+//        }
+//	$smarty->assign('tousername',$tousername);
+		$supplier = 0;
+        if($touser){
+            $touser = $db->getOne('select user_id from '.$ecs->table('users')." where user_name = '$touser'");
+			$supplier = $db->getOne('select supplier_id from '.$ecs->table('supplier')." where user_id = '$touser'" );
+        }
+        
+		
+	$step = "default";
+	//检查密码
+	if($curstep == 'checkpwd'){
+		$pwd = isset($_REQUEST['pwd2'])?$_REQUEST['pwd2']:'';
+		
+		//echo "<br>";echo md5($pwd);echo "000<br>";echo $pwd2;
+		
+		if(md5($pwd) == $pwd2){
+			//echo 'select user_name from '.$ecs->table('users')." where user_id = $touser";
+			
+			$step = "zhuanzhang";
+		}else{
+			$msg = "密码不匹配，请重新输入！";
+			$smarty->assign("msg",$msg);
+			$step = "default";
+		}
+	}elseif($curstep == 'zhuanzhang'){//执行转账操作
+	
+		
+				$amount = intval(isset($_REQUEST['amount'])?$_REQUEST['amount']:0);
+                if(!$touser){
+                    $msg = "没有找到该用户，请确认您输入的名称是正确的";
+                    $smarty->assign("msg",$msg);
+                    $step = 'zhuanzhang';
+                }elseif($touser == $user_id){
+                    $msg = "不能转账给自己";
+                    $smarty->assign("msg",$msg);
+                    $step = 'zhuanzhang';
+                }else{
+                    if(!$supplier){
+						$msg = "该用户不是联盟商家！";
+						$smarty->assign("msg",$msg);
+						$step = 'zhuanzhang';
+					}else{
+						//转账消费币不能为0
+						if($xiaofeibi <= $amount && $amount){
+								$msg = "转账消费币不能超过您的现金币,并且转账消费币不能为0";
+								$smarty->assign("msg",$msg);
+								$step = 'zhuanzhang';
+						}else{
+								zhangzhangLog('account_xiaofeibi',$user_id,$touser,$amount);
+								$step = 'success';
+						}
+					}
+                }
+	}else{
+		$step = "default";
+	}
+	
+	$smarty->assign('step',$step);
+	$smarty->assign('user_id', $_SESSION['user_id']);
+	$smarty->assign('touser', $touser);
+	$smarty->assign('tousername', $tousername);
+	
+	$smarty->display('user_account.dwt');
+}
+
 function action_zhuanzhanglog(){
         $_LANG = $GLOBALS['_LANG'];
 	$smarty = $GLOBALS['smarty'];
@@ -426,6 +513,7 @@ function action_zhuanzhanglog(){
 * touid ：转给uid
 * amount : 金额
 * 现在可以转账的只有现金币
+* 转账给联盟商家的是消费币
 */
 function zhangzhangLog($bizhong,$from_uid,$to_uid,$amount){
 	

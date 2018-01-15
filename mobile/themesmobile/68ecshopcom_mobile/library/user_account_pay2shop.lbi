@@ -1,0 +1,103 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<div class="Funds yongjinfenhong addressmone">
+	<form action="user.php?act=pay2shop_exec" method="post" name="theForm" id="theForm">
+		<div style="min-height:300px;">
+			<ul>
+				<li>
+					<span>可用消费币 ： </span> 
+					<em>{$pc_userinfo.account_xiaofeibi}</em>
+					<input type="hidden" id="user_xiaofeibi" name="user_xiaofeibi" value="{$pc_userinfo.account_xiaofeibi}" />
+				</li>
+				<li>
+					<span>消费币 ： </span> 
+					<em><input type="text" id="xiaofeibi" name="xiaofeibi" /></em>
+				</li>
+				<li>
+					<span>联盟商家 ： </span> 
+					<em>
+					<select name="shopname" id="shopname"  class="" style="width:100%;" onchange="getUserShortInfo(this);">
+						 <option value="0">请选择联盟商家</option>
+						  <!-- {foreach from=$shoplist item=one} -->
+						  <option value="{$one.user_id}" >{$one.company_name}</option>
+						  <!-- {/foreach} -->
+					</select>
+					</em>
+				</li>
+				<li>
+					<div>
+						<h3>商家信息</h3>
+						<p class="shopinfo">
+							
+						</p>
+					</div>
+				</li>
+				<li>
+					<input type="button" value="转账" id="btn-zhuanzhang" onclick="zhuanzhang()" disabled="disabled" class="btn_big1" style="background:#E71F19;color:#fff;width:100%;border:#E71F19;" />
+				</li>
+			</ul>
+		</div>
+	</form>
+</div>
+<div class="Funds_dom">
+
+</div>
+
+<script>
+function isNumber(value) {
+    var patrn = /^(-)?\d+(\.\d+)?$/;
+    if (patrn.exec(value) == null || value == "") {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function zhuanzhang(){
+	var xiaofeibi = parseFloat($('#xiaofeibi').val());
+	var user_xiaofeibi = parseFloat($('#user_xiaofeibi').val());
+	
+	var shopname = $('#shopname').val();
+	
+	if(!isNumber(xiaofeibi) || xiaofeibi > user_xiaofeibi){
+		alert('消费币必须为数字，且不能超过当前可用的消费币');
+		return 0;
+	}
+	
+	if(shopname == 0){
+		alert('请选择联盟商家！');
+		return 0;
+	}
+	
+	$('#theForm').submit();
+}
+function getUserShortInfo(e){
+    var v = $(e).val();
+	
+    if(v){
+        $.post('user.php?act=getUserShortInfo', {
+		uname: v
+	}, function(result) {
+
+            //alert(result);
+                //alert(result.msg);
+		if (result.status == 'success') {
+                   
+                    $('.shopinfo').html(
+						//	"&nbsp;&nbsp;该用户信息为："+
+							"【<i style='color:#E4393C'>用户名："+result.data.user_name+"</i>】<br>"+
+							"【<i style='color:#E4393C'>联系电话："+result.data.mobile_phone+"</i>】<br>"+
+							"【<i style='color:#E4393C'>店名："+result.data.shopname+"</i>】<br>"+
+							"请核实后再转账！！！");
+					$('#btn-zhuanzhang').removeAttr("disabled"); 
+					
+		}else{
+                    $('.shopinfo').text(result.msg);
+                    $(e).val('');
+                    $(e).next().val('');
+					$('#btn-zhuanzhang').attr('disabled',"true");
+		}
+	}, 'Json');
+    }
+}
+</script>

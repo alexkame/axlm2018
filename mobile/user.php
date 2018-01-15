@@ -101,7 +101,7 @@ $ui_arr = array(
        'validate_email','track_packages','transform_points','qpassword_name','get_passwd_question','check_answer','vc_login_act',
        'vc_login','ck_email','forget_password','act_forget_pass','re_pass','forget_surplus_password','act_forget_surplus_password',
        'update_surplus_password','act_update_surplus_password','verify_reset_surplus_email','get_verify_code','check_register',
-       'supplier_reg','comment_order','address','set_address','follow_shop','account_manage','my_comment','shaidan_send'
+       'supplier_reg','comment_order','address','set_address','follow_shop','account_manage','account_pay2shop','pay2shop_exec','getUserShortInfo','my_comment','shaidan_send'
 );
 
 $not_login_arr[] = 'send_mobile_code';
@@ -237,6 +237,102 @@ function action_account_manage(){
 	$smarty->assign('user_info', get_user_info());
 	$smarty->assign('baseinfo', $baseinfo);
     $smarty->display('user_transaction.dwt');
+}
+function action_pay2shop_exec(){
+	$user = $GLOBALS['user'];
+	$_CFG = $GLOBALS['_CFG'];
+	$_LANG = $GLOBALS['_LANG'];
+	$smarty = $GLOBALS['smarty'];
+	$db = $GLOBALS['db'];
+	$ecs = $GLOBALS['ecs'];
+	$user_id = $GLOBALS['user_id'];
+	
+	$amount = floatval(isset($_REQUEST['xiaofeibi'])?$_REQUEST['xiaofeibi']:0);
+	$touserid = isset($_REQUEST['shopname'])?$_REQUEST['shopname']:0;
+	
+	if(!$touserid){
+		$msg = "没有找到该用户，请确认您输入的名称是正确的";
+		show_message($msg, '返回', 'user.php', 'account_pay2shop');
+		
+	}elseif($touserid == $user_id){
+		$msg = "不能转账给自己";
+		show_message($msg, '返回', 'user.php', 'account_pay2shop');
+	}else{
+			
+		zhangzhangLog('account_xiaofeibi',$user_id,$touserid,$amount);
+		$msg = "转账成功！";
+		show_message($msg, '返回', 'user.php', 'account_pay2shop');
+	}
+				
+	
+}
+function action_account_pay2shop(){
+    $user = $GLOBALS['user'];
+	$_CFG = $GLOBALS['_CFG'];
+	$_LANG = $GLOBALS['_LANG'];
+	$smarty = $GLOBALS['smarty'];
+	$db = $GLOBALS['db'];
+	$ecs = $GLOBALS['ecs'];
+	$user_id = $GLOBALS['user_id'];
+	
+	$baseinfo = get_user_base_expend_code($user_id);
+	$expend_amount_rest = get_cash_rest($user_id);
+	$baseinfo['expend_amount_rest'] = price_format($expend_amount_rest);
+	
+	
+	$sql = "select * from " . $ecs->table('supplier') . " where status = 1 ";
+	$shoplist =  $db->getAll($sql);;
+	
+	$smarty->assign('user_info', get_user_info());
+	$smarty->assign('baseinfo', $baseinfo);
+	$smarty->assign('shoplist', $shoplist);
+    $smarty->display('user_transaction.dwt');
+}
+
+function action_getUserShortInfo(){
+    $_LANG = $GLOBALS['_LANG'];
+    $smarty = $GLOBALS['smarty'];
+    $db = $GLOBALS['db'];
+    $ecs = $GLOBALS['ecs'];
+    $user_id = $_SESSION['user_id'];
+        
+    $uname = isset($_POST['uname'])?$_POST['uname']:"";
+	//注意这里的uname实际上传入的是user id
+    if($uname == ''){
+        $data = array(
+            "status"=>"error",
+            "msg"=>"参数错误"
+        );
+    }else{
+        $sql = "select user_id,user_name ,mobile_phone from ".$ecs->table('users')." where user_id = '$uname'";
+        $info = $db->getRow($sql);
+        if($info){
+			$shop_sql = "select company_name from ".$ecs->table('supplier')." where user_id = '".$uname."'";
+			$shopinfoinfo = $db->getRow($shop_sql);
+			if($shopinfoinfo){
+				$info['shopname'] = $shopinfoinfo['company_name'];
+			}
+            if($info['user_id'] == $user_id){
+                $data = array(
+                    "status"=>"error",
+                    "msg"=>"不能填写自己"
+                );
+            }else{
+                $data = array(
+                    "status"=>"success",
+                    "msg"=>"返回成功",
+                    "data"=>$info
+                );
+            }
+        }else{
+           $data = array(
+               "status"=>'error',
+               "msg"=>"没有找到此用户"
+           );
+        }
+    }
+    echo json_encode($data);
+    exit;
 }
 
 function action_supplier_reg()
@@ -6430,4 +6526,59 @@ function inject_check($str) {
 	$check = preg_match('/select|insert|update|delete|\'|\/\*|\*|\.\.\/|\.\/|union|into|load_file|outfile/i', $str);	
 	Return $check;
 }
+
+/*
+* bizhong : 币种 account_xianjinbi, account_xiaofeibi, account_aixinbi,account_jifenbi, account_jifen,
+* uid : 用户id
+* touid ：转给uid
+* amount : 金额
+* 现在可以转账的只有现金币
+* 转账给联盟商家的是消费币
+*/
+function zhangzhangLog($bizhong,$from_uid,$to_uid,$amount){
+	
+	$db = $GLOBALS['db'];
+	$ecs = $GLOBALS['ecs'];
+	$time = time();
+
+	//if($bizhong == "account_xianjinbi"){
+		$sql = "insert into ".$ecs->table('pc_zhuanzhang_log')."(uid,from_uid,amount,type,ctime,utime)values('".$from_uid."','".$to_uid."','".$amount."','".$bizhong."','".$time."','".$time."')";
+		$db->query($sql);
+		
+		//更改每个人的账号变化记录
+		save_user_account_log($from_uid,$bizhong,"-",$amount);
+		save_user_account_log($to_uid,$bizhong,"+",$amount);
+		
+	//}
+	
+}
+
+function save_user_account_log($uid,$type,$amount_type,$amount){
+	
+	$db = $GLOBALS['db'];
+	$ecs = $GLOBALS['ecs'];
+	
+	$original_value = 0;
+	$new_value = 0;
+	$adminid = 0;
+	$note = '转账';
+	$ctime = time();
+	
+	$original_value = $db->getOne("select $type from ".$ecs->table('pc_user')." where uid = $uid");
+	$original_value = intval($original_value);
+	if($amount_type == "+"){
+		$new_value = $original_value + intval($amount);
+	}else{
+		$new_value = $original_value - intval($amount);
+	}
+	$new_value = intval($new_value);
+	
+	$sql = "insert into ".$ecs->table('pc_user_account_log')."(uid,type,original_value,change_value,new_value,note,adminid,ctime)values('".$uid."','".$type."','".$original_value."','".$amount_type.$amount."','".$new_value."','".$note."','".$adminid."','".$ctime."')";
+	$db->query($sql);
+	
+	$sql = "update ".$ecs->table('pc_user')." set $type = ".$new_value." where uid = $uid limit 1";
+	$db->query($sql);
+	
+}		
+
 ?>

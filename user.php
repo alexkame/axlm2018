@@ -230,6 +230,11 @@ function action_getUserShortInfo(){
         $sql = "select user_id,user_name ,mobile_phone from ".$ecs->table('users')." where user_name = '$uname'";
         $info = $db->getRow($sql);
         if($info){
+			$shop_sql = "select company_name from ".$ecs->table('supplier')." where user_id = '".$info['user_id'] ."'";
+			$shopinfoinfo = $db->getRow($shop_sql);
+			if($shopinfoinfo){
+				$info['shopname'] = $shopinfoinfo['company_name'];
+			}
             if($info['user_id'] == $user_id){
                 $data = array(
                     "status"=>"error",

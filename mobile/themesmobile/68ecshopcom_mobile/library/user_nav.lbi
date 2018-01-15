@@ -31,6 +31,11 @@
 <dl><a href="user.php?act=account_manage"><dt><strong>我的资产</strong><span>全部资产/充值</span></dt></a></dl>
 {insert name='member_info1'}
 </div>
+<!--转账-->
+<div class="Assets">
+<dl><a href="user.php?act=account_pay2shop"><dt><strong>付款</strong><span>转账给联盟商家</span></dt></a></dl>
+{insert name='member_info1'}
+</div>
 <!--菜单-->
 <div class="Wallet main_top">
 <!--微分销菜单-->

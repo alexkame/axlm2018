@@ -183,7 +183,7 @@ function submit_surplus_form(){
       <div class="tab_nav">
         <div class="header">
           <div class="h-left"><a class="sb-back" href="javascript:history.back(-1)" title="返回"></a></div>
-          <div class="h-mid">{if $action eq 'profile'}信息修改{elseif  $action eq 'default'}用户中心{elseif  $action eq 'bonus'}我的红包{elseif $action eq 'order_list'}我的订单{elseif $action eq 'order_detail'}订单详情{elseif $action eq 'my_comment'}我的评价{elseif $action eq 'account_deposit'}在线充值{elseif $action eq 'account_raply'}提现{elseif $action eq 'account_log'}申请记录{elseif $action eq 'account_detail'}账户明细{elseif $action eq 'act_account' or $action eq 'pay' or $action eq 'account_manage'}资金管理{elseif $action eq 'address_list'}管理收货地址{elseif $action eq 'address'}收货地址编辑{elseif $action eq 'vc_login'}储值卡充值{elseif $action eq 'account_expendcode'}推广二维码{elseif $action eq 'account_expendlist'}推广会员{elseif $action eq 'account_yongjin'}佣金记录{elseif $action eq 'account_fenhong'}分红记录{/if}</div>
+          <div class="h-mid">{if $action eq 'profile'}信息修改{elseif  $action eq 'default'}用户中心{elseif  $action eq 'bonus'}我的红包{elseif $action eq 'order_list'}我的订单{elseif $action eq 'order_detail'}订单详情{elseif $action eq 'my_comment'}我的评价{elseif $action eq 'account_deposit'}在线充值{elseif $action eq 'account_raply'}提现{elseif $action eq 'account_log'}申请记录{elseif $action eq 'account_detail'}账户明细{elseif $action eq 'act_account' or $action eq 'pay' or $action eq 'account_manage'}资金管理{elseif $action eq 'account_pay2shop'}付款给联盟商家{elseif $action eq 'address_list'}管理收货地址{elseif $action eq 'address'}收货地址编辑{elseif $action eq 'vc_login'}储值卡充值{elseif $action eq 'account_expendcode'}推广二维码{elseif $action eq 'account_expendlist'}推广会员{elseif $action eq 'account_yongjin'}佣金记录{elseif $action eq 'account_fenhong'}分红记录{/if}</div>
           <div class="h-right">
             <aside class="top_bar">
               <div onClick="show_menu();$('#close_btn').addClass('hid');" id="show_more"><a href="javascript:;"></a> </div>
@@ -222,6 +222,9 @@ function submit_surplus_form(){
 		{/if}
 		{if $action eq "account_manage"}
 			{include file='library/user_account.lbi'}
+		{/if}
+		{if $action eq "account_pay2shop"}
+			{include file='library/user_account_pay2shop.lbi'}
 		{/if}
 		{if $action eq "act_account"}
 			{include file='library/user_account_recharge.lbi'}
