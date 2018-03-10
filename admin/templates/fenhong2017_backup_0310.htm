@@ -20,16 +20,14 @@
 -->
 <p style="font-size:14px;color:#fa841e;">分红池金额： 共{$fenhongchi}金额，共{$fenhong_total_user}分红用户，总计{$fenhong_total_dian}分红点
     <br>
-    <form action="?act=dayfenhong_save_fenhong_user_money">
-        每个分红点金额：
-			<input type="text" id="fenhong_user_money" name="fenhong_user_money" value="{$fenhong_user_money}" style="width:100px;"/>
-            <input type="hidden" name="act" value="dayfenhong_save_fenhong_user_money" />
+    <form action="?act=dayfenhong">
+        每个分红点金额：<input type="text" id="fenhong_user_money" name="fenhong_user_money" value="" style="width:100px;"/>
+            <input type="hidden" name="act" value="dayfenhong" />
             <input type="hidden" name="fenhong_total_dian" value="{$fenhong_total_dian}" />
             <input type="hidden" name="fenhongchi" value="{$fenhongchi}" />
-            <input type="submit" class='btn-orange' style="background:#fa841e;color:#fff;margin-left:20px;border:none;cursor:pointer;padding:5px;" value="保存单个分红点金额" />
+            <input type="submit" class='btn-orange' style="background:#fa841e;color:#fff;margin-left:20px;border:none;cursor:pointer;padding:5px;" value="今日分红给用户" />
     </form>
     <p>备注：分红金额累计到用户的消费币中</p>
-	<h3 style="color:red;">分红会自动执行，不需要手动执行</h3>
 </p>
 </div>
 

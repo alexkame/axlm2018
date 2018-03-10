@@ -52,6 +52,7 @@ if ($_REQUEST['act'] == 'list')
     
     
     $fenhongchi = $db->getOne("select svalue from ".$ecs->table('pc_config')." where sname = 'fenhongchi'");
+    $fenhong_user_money = $db->getOne("select svalue from ".$ecs->table('pc_config')." where sname = 'fenhong_user_money'");
 	//echo "select id,uid,account_jifenbi,account_fenhong_amount from ".$ecs->table('pc_user')." where account_jifenbi > 0 and status = 1";
     $pc_user_list = $db->getAll("select id,uid,account_jifenbi,account_fenhong_amount from ".$ecs->table('pc_user')." where account_jifenbi > 0 and status = 1");
     $pc_fenhongdian = array();
@@ -68,6 +69,7 @@ if ($_REQUEST['act'] == 'list')
     }
 	//var_dump($pc_fenhongdian);
     $smarty->assign("fenhongchi",$fenhongchi);
+    $smarty->assign("fenhong_user_money",$fenhong_user_money);
     $smarty->assign("fenhong_total_user",count($pc_user_list));
     $smarty->assign("fenhong_total_dian",$pc_total_fenhongdian);
     
@@ -181,37 +183,102 @@ elseif ($_REQUEST['act'] == 'daytrade')
     
 }elseif ($_REQUEST['act'] == 'dayfenhong')
 {
-    $fenhong_user_money = floatval(isset($_REQUEST['fenhong_user_money'])?$_REQUEST['fenhong_user_money']:0);
-    $fenhong_total_dian = intval(isset($_REQUEST['fenhong_total_dian'])?$_REQUEST['fenhong_total_dian']:0);
-    $fenhongchi = floatval(isset($_REQUEST['fenhongchi'])?$_REQUEST['fenhongchi']:0);
+//run 自动执行
+	$fenhongchi = $db->getOne("select svalue from ".$ecs->table('pc_config')." where sname = 'fenhongchi'");
+    $fenhong_user_money = $db->getOne("select svalue from ".$ecs->table('pc_config')." where sname = 'fenhong_user_money'");
+	$pc_user_list = $db->getAll("select id,uid,account_jifenbi,account_fenhong_amount from ".$ecs->table('pc_user')." where account_jifenbi > 0 and status = 1");
+    $pc_fenhongdian = array();
+    $pc_total_fenhongdian = 0;
+    foreach($pc_user_list as $k=>$v){
+        $pc_fenhongdian[] = array(
+            "uid"=>$v['uid'],
+            "account_jifenbi"=>$v['account_jifenbi'],
+            "account_fenhong_amount"=>$v['account_fenhong_amount'],
+            "fenhongdain"=>intval($v['account_jifenbi']/360)-intval($v['account_fenhong_amount']/360) //剩余的分红点，去除掉已分红的点
+        );
+		
+        $pc_total_fenhongdian += intval($v['account_jifenbi']/360)-intval($v['account_fenhong_amount']/360);
+    }
+	//var_dump($pc_fenhongdian);
+    //$smarty->assign("fenhongchi",$fenhongchi);
+    //$smarty->assign("fenhong_user_money",$fenhong_user_money);
+    //$smarty->assign("fenhong_total_user",count($pc_user_list));
+    //$smarty->assign("fenhong_total_dian",$pc_total_fenhongdian);
+// end run 自动执行
+	
+    $fenhong_user_money = floatval(isset($fenhong_user_money)?$fenhong_user_money:0);
+    $fenhong_total_dian = intval(isset($pc_total_fenhongdian)?$pc_total_fenhongdian:0);
+    $fenhongchi = floatval(isset($fenhongchi)?$fenhongchi:0);
     //echo $fenhong_user_money;
+
+	
+	//echo $fenhong_user_money."<br>";
+	//echo $fenhong_total_dian."<br>";
+	//echo $fenhongchi;
+	//exit;
+	
+    if($fenhong_user_money <= 0){
+        //sys_msg('分红金额不能小于0', 0 ,$links);
+        return 0;
+		exit;
+    }
+    if($fenhongchi <= 0){
+        //sys_msg('分红池金额小于0，不能执行分红', 0 ,$links);
+        return 0;
+		exit;
+    }
+    if($fenhong_total_dian <= 0){
+        //sys_msg('分红总点不能为0，不能执行分红', 0 ,$links);
+        return 0;
+		exit;
+    }
+    if(($fenhong_total_dian*$fenhong_user_money)>$fenhongchi){
+        //sys_msg('分红金额大于分红池金额', 0 ,$links);
+        return 0;
+		exit;
+    }
+	
+	
+    $cur_date = date("Y-m-d");
+    $sql = "select * from ".$ecs->table('pc_fenhong')." where fenhong_date='".$cur_date."'";
+    $is_check = $db->getRow($sql);
+	
+	//echo $sql;
+	//var_dump($is_check);
+
+	
+    if($is_check){
+        //sys_msg('当日已分红，不可重复执行', 0 ,$links);
+        echo 0;
+    }else{
+        fenhongjisuan($fenhong_user_money,"fenhong");
+		echo 1;
+    }
+	
+	exit;
+    //sys_msg('操作成功', 0 ,$links);
+}
+elseif ($_REQUEST['act'] == 'dayfenhong_save_fenhong_user_money')
+{
+    $fenhong_user_money = floatval(isset($_REQUEST['fenhong_user_money'])?$_REQUEST['fenhong_user_money']:0);
+   
 
     if($fenhong_user_money <= 0){
         sys_msg('分红金额不能小于0', 0 ,$links);
         return 0;
     }
-    if($fenhongchi <= 0){
-        sys_msg('分红池金额小于0，不能执行分红', 0 ,$links);
-        return 0;
-    }
-    if($fenhong_total_dian <= 0){
-        sys_msg('分红总点不能为0，不能执行分红', 0 ,$links);
-        return 0;
-    }
+   
     if(($fenhong_total_dian*$fenhong_user_money)>$fenhongchi){
         sys_msg('分红金额大于分红池金额', 0 ,$links);
         return 0;
     }
-    $cur_date = date("Y-m-d");
-    $sql = "select * from ".$ecs->table('pc_fenhong')." where fenhong_date='".$cur_date."'";
-    $is_check = $db->getRow($sql);
-    if($is_check){
-        sys_msg('当日已分红，不可重复执行', 0 ,$links);
-        return 0;
-    }else{
-        fenhongjisuan($fenhong_user_money,"fenhong");
-    }
-        
+	
+	$osql = "update ".$GLOBALS['ecs']->table('pc_config')." set svalue = '".$fenhong_user_money."' where sname = 'fenhong_user_money' limit 1 ";
+	//echo $osql;
+	
+	$GLOBALS['db']->query($osql);
+   
+           
     sys_msg('操作成功', 0 ,$links);
 }
 
