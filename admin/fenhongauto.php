@@ -64,22 +64,22 @@ if ($_REQUEST['act'] == 'dayfenhong')
 	
     if($fenhong_user_money <= 0){
         //sys_msg('分红金额不能小于0', 0 ,$links);
-        echo 0;
+        echo date("Y-m-d H:i:s")."---->分红金额不能小于0 \r\n";
 		exit;
     }
     if($fenhongchi <= 0){
         //sys_msg('分红池金额小于0，不能执行分红', 0 ,$links);
-        echo 0;
+        echo date("Y-m-d H:i:s")."---->分红池金额小于0，不能执行分红 \r\n";
 		exit;
     }
     if($fenhong_total_dian <= 0){
         //sys_msg('分红总点不能为0，不能执行分红', 0 ,$links);
-        echo 0;
+        echo date("Y-m-d H:i:s")."---->分红总点不能为0，不能执行分红 \r\n";
 		exit;
     }
     if(($fenhong_total_dian*$fenhong_user_money)>$fenhongchi){
         //sys_msg('分红金额大于分红池金额', 0 ,$links);
-        echo 0;
+        echo date("Y-m-d H:i:s")."---->分红金额大于分红池金额 \r\n";
 		exit;
     }
 	
@@ -94,11 +94,18 @@ if ($_REQUEST['act'] == 'dayfenhong')
 	
     if($is_check){
         //sys_msg('当日已分红，不可重复执行', 0 ,$links);
-        echo 0;
+        echo date("Y-m-d H:i:s")."---->当日已分红，不可重复执行 \r\n";
     }else{
-        fenhongjisuan($fenhong_user_money,"fenhong");
-		echo 1;
-    }
+		
+		if(date("H") < 23){
+			echo  date("Y-m-d H:i:s")."还未到执行时间\r\n";
+		}else{
+			//fenhongjisuan($fenhong_user_money,"fenhong");
+			echo date("Y-m-d H:i:s")." 执行分红计算----> 1 \r\n ";
+		}
+	}
+	
+	
 	
 	exit;
     //sys_msg('操作成功', 0 ,$links);

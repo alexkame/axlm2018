@@ -24,7 +24,7 @@ $is_show_wap = false;
 //}
 
 error_reporting(0);
-date_default_timezone_set('PRC');
+date_default_timezone_set('Asia/Shanghai'); 
 if (__FILE__ == '')
 {
     die('Fatal error code: 0');
@@ -71,7 +71,8 @@ if (defined('DEBUG_MODE') == false)
 
 if (PHP_VERSION >= '5.1' && !empty($timezone))
 {
-    date_default_timezone_set($timezone);
+    //date_default_timezone_set($timezone);
+	date_default_timezone_set('Asia/Shanghai'); 
 }
 
 $php_self = isset($_SERVER['PHP_SELF']) ? $_SERVER['PHP_SELF'] : $_SERVER['SCRIPT_NAME'];
