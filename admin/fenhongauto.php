@@ -97,12 +97,13 @@ if ($_REQUEST['act'] == 'dayfenhong')
         echo date("Y-m-d H:i:s")."---->当日已分红，不可重复执行 \r\n";
     }else{
 		
-		if(date("H") < 23){
-			echo  date("Y-m-d H:i:s")."还未到执行时间\r\n";
-		}else{
-			//fenhongjisuan($fenhong_user_money,"fenhong");
+		//if(date("H") < 23){
+		//	echo  date("Y-m-d H:i:s")."还未到执行时间\r\n";
+		//}else{
+			fenhongjisuan($fenhong_user_money,"fenhong");
+			//fenhongjisuan_zhidingDate($fenhong_user_money,"fenhong");
 			echo date("Y-m-d H:i:s")." 执行分红计算----> 1 \r\n ";
-		}
+		//}
 	}
 	
 	
