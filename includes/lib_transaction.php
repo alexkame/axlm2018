@@ -775,7 +775,7 @@ function get_order_detail($order_id, $user_id = 0)
             $order['user_name'] = $_SESSION['user_name'];
             $order['pay_desc']  = $payment_info['pay_desc'];
             
-            if($payment_info['pay_code'] == 'xianjinbi' || $payment_info['pay_code']=='xiaofeibi'){
+            if($payment_info['pay_code'] == 'xianjinbi' || $payment_info['pay_code']=='xiaofeibi' || $payment_info['pay_code']=='aixinbi'){
                 $order['pay_online'] = '';
             }else{
                  /* 调用相应的支付方式文件 */

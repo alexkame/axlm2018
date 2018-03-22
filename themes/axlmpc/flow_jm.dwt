@@ -1097,7 +1097,10 @@ if(result.error == 1){
         <div class="blank10"></div>
         <table cellpadding=0 cellspacing=0 width="100%" >
           <tr>
-            <td align=right><!-- #BeginLibraryItem "/Library/order_total.lbi" --><!-- #EndLibraryItem --></td>
+            <td align=right>
+			<!-- #BeginLibraryItem "/Library/order_total.lbi" --><!-- #EndLibraryItem -->
+			注意: 爱心币不适用折扣。
+			</td>
           </tr>
         </table>
       </div>
@@ -1113,7 +1116,7 @@ if(result.error == 1){
       </script> 
     {* 支付方式 *}
     <div class="checkBox_jm" id="pay_div">
-      <div class="title">4 支付方式</div>
+      <div class="title">4 支付方式22</div>
       <ul class="payment_tab_jm" id="payment_tab">
         <!-- {foreach from=$payment_list name="payment_list" item=payment} --> 
         <!-- 预售订单不支持货到付款 -->
@@ -1128,7 +1131,7 @@ if(result.error == 1){
         <!-- {/foreach} -->
         <li  onclick="selPayment(this)">
           <input type="radio" onclick="selectPayment(this)" isCod="0" name="payment"  id="payment_other_input" value="0"  >
-          &nbsp;支付宝/微信/现金币/消费币支付
+          &nbsp;支付宝/微信/现金币/消费币/爱心币支付
           <div class="payment_subbox">
             <ul >
               <!-- {foreach from=$payment_list name="payment_list" item=payment} --> 

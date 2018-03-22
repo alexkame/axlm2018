@@ -160,6 +160,18 @@ function selectVirtualGroupPayment(obj) {
  * 改变支付方式
  */
 function selectPayment(obj) {
+	
+	if(obj.value == 10){
+		$('#paymoney_discount').hide();
+		$('#paymoney_amount').hide();
+		$('#paymoney_good_price').attr("style","font-size:18px;");
+	}else{
+		$('#paymoney_discount').show();
+		$('#paymoney_amount').show();
+		$('#paymoney_good_price').removeAttr("style");
+	}
+	
+
 	/* 代码增加_start By www.68ecshop.com */
 	var theForm = obj.form;
 	var con_country = theForm.elements['have_consignee'].value;
@@ -174,7 +186,8 @@ function selectPayment(obj) {
 	} else {
 		selectedPayment = obj;
 	}
-
+	
+	
 	Ajax.call('flow.php?step=select_payment', 'payment=' + obj.value, orderSelectedResponse, 'GET', 'JSON');
 }
 /**
@@ -279,9 +292,10 @@ function handleGroupBuyInsure(needInsure) {
  * 回调函数
  */
 function orderSelectedResponse(result) {
+
 	if (result.error) {
 		$("#pay_div input[type='radio']").attr("checked", false);
-		if(result.error == 'error_xianjinbi' || result.error == 'error_xiaofeibi'){
+		if(result.error == 'error_xianjinbi' || result.error == 'error_xiaofeibi'  || result.error == 'error_aixinbi'){
 			
 			alert(result.content);
 		}else{
@@ -305,8 +319,21 @@ function orderSelectedResponse(result) {
 			}
 
 		}
+		
+		if(selected_pay_code == 'aixinbi'){
+			$('#paymoney_discount').hide();
+			$('#paymoney_amount').hide();
+			$('#paymoney_good_price').attr("style","font-size:18px;");
+		}else{
+			$('#paymoney_discount').show();
+			$('#paymoney_amount').show();
+			$('#paymoney_good_price').removeAttr("style");
+		}
+		
 	} catch (ex) {
 	}
+	
+
 }
 
 /**

@@ -79,6 +79,8 @@ function axlmpc($user_id,$order_id,$order_amount,$good_amount,$paytype=''){
             change_account_info($user_id, "xianjinbi", "-", $order_amount);
         }elseif($paytype == '消费币'){
             change_account_info($user_id, "xiaofeibi", "-", $order_amount);
+        }elseif($paytype == '爱心币'){
+            change_account_info($user_id, "aixinbi", "-", $order_amount);
         }
     }
  

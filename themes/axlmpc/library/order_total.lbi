@@ -19,9 +19,9 @@
   <!-- {/if} -->
   <tr>
     <td align="right" bgcolor="#ffffff">
-      {$lang.goods_all_price}: <font class="main-color">{$total.goods_price_formated}</font>
+      {$lang.goods_all_price}: <font class="main-color" id="paymoney_good_price">{$total.goods_price_formated}</font>
       <!-- {if $total.discount gt 0} 折扣 -->
-      - {$lang.discount}: <font class="main-color">{$total.discount_formated}</font>
+      <span id="paymoney_discount">- {$lang.discount}: <font class="main-color"  >{$total.discount_formated}</font></span>
       <!-- {/if} -->
       <!-- {if $total.tax gt 0} 税 -->
       + {$lang.tax}: <font class="main-color">{$total.tax_formated}</font>
@@ -57,7 +57,8 @@
   </tr>
   <!-- {/if} 使用余额或积分或红包 -->
   <tr>
-    <td align="right" bgcolor="#ffffff"> {$lang.total_fee}： <font class="main-color" style="font-size:18px;font-family:微软雅黑;">{$total.amount_formated}</font>
+    <td align="right" bgcolor="#ffffff" id="paymoney_amount"> {$lang.total_fee}： 
+	<font class="main-color" style="font-size:18px;font-family:微软雅黑;" >{$total.amount_formated}</font>
   {if $is_group_buy}<br />
   {$lang.notice_gb_order_amount}{/if}
   <!--{if $total.exchange_integral }消耗积分--><br />

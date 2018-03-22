@@ -1734,6 +1734,12 @@ elseif ($_REQUEST['step'] == 'select_payment')
                 $result['error']="error_xiaofeibi";
                 $result['content']='您的消费币余额不足！订单金额：'.$total['amount_formated'].'; 您当前的消费币：¥'.$pc_user_info['account_xiaofeibi'];
             }
+        }else if($pay_code == 'aixinbi'){
+			
+            if($total['amount'] > floatval($pc_user_info['account_aixinbi'])){
+                $result['error']="error_aixinbi";
+                $result['content']='您的爱心币余额不足！订单金额：'.$total['amount_formated'].'; 您当前的爱心币：¥'.$pc_user_info['account_aixinbi'];
+            }
         }
         
        
@@ -2554,7 +2560,17 @@ elseif ($_REQUEST['step'] == 'done')
 	    $order['shipping_pay'][$ckey] = $_POST['pay_ship'][$ckey];
 	   
 	    /* 订单中的总额 */
-	    $total = order_fee($order, $cart_goods, $consignee);
+		/* 支付方式 */
+		
+	    if ($order['pay_id'] > 0)
+	    {
+	        $payment = payment_info($order['pay_id']);
+	        $order['pay_name'] = addslashes($payment['pay_name']);
+	    }else{
+	    	show_message('支付方式必须选择一项!');
+	    }
+		
+	    $total = order_fee($order, $cart_goods, $consignee, $payment['pay_name']);
 
 		unset($order['shipping_pay'][$ckey]);// 去掉这条信息以免影响下订单操作
 
@@ -2660,10 +2676,10 @@ elseif ($_REQUEST['step'] == 'done')
 			$order['order_amount'] = 0;
 	       //$order['order_amount'] = $order['surplus'];//把支付的金额存进order_amount这个中
 	    }
-            if ($order['pay_name'] == '现金币' || $order['pay_name'] == '消费币')
+            if ($order['pay_name'] == '现金币' || $order['pay_name'] == '消费币' || $order['pay_name'] == '爱心币')
 	    {
                 
-                $sql = "select account_xianjinbi,account_xiaofeibi from ".$ecs->table('pc_user')." where uid = ".$user_id;
+                $sql = "select account_xianjinbi,account_xiaofeibi , account_aixinbi from ".$ecs->table('pc_user')." where uid = ".$user_id;
                 $pc_userinfo = $db->getRow($sql);
                 if($order['pay_name'] == '现金币'){//account_xianjinbi
                     $xianjinbi = floatval($pc_userinfo['account_xianjinbi']);
@@ -2680,7 +2696,14 @@ elseif ($_REQUEST['step'] == 'done')
                         exit;
                     }   
                 }
-                
+                if($order['pay_name'] == '爱心币'){//account_aixinbi
+                    $aixinbi = floatval($pc_userinfo['account_aixinbi']);
+                    if($order['goods_amount'] > $aixinbi){
+                        show_message('爱心币余额不足，请联系管理员进行充值');
+                        exit;
+                    }   
+                }
+				
 	        $order['order_status'] = OS_CONFIRMED;
 	        $order['confirm_time'] = gmtime();
 	        $order['pay_status']   = PS_PAYED;
@@ -3010,6 +3033,11 @@ elseif ($_REQUEST['step'] == 'done')
         axlmpc($_SESSION['user_id'],$order['order_id'],$order['order_amount'],$order['goods_amount'],$order['pay_name']);
         //支付后，修改现金币，消费币余额
         pc_log("提交订单，即时分佣---完成");
+    }else if($order['pay_name'] == '爱心币'){
+        pc_log("提交订单，即时分佣");
+        axlmpc($_SESSION['user_id'],$order['order_id'],$order['order_amount'],$order['goods_amount'],$order['pay_name']);
+        //支付后，修改爱心币余额
+        pc_log("提交订单，即时分佣---完成");
     }
 //}}}	
     
@@ -3057,7 +3085,7 @@ elseif ($_REQUEST['step'] == 'done')
 	if ($order['order_amount'] > 0)
     {
         $payment = payment_info($order['pay_id']);
-        if($order['pay_name'] == '现金币' || $order['pay_name'] == '消费币'){
+        if($order['pay_name'] == '现金币' || $order['pay_name'] == '消费币' || $order['pay_name'] == '爱心币'){
             $order['pay_desc'] = $order['pay_name']."支付";
         }else{
             include_once('includes/modules/payment/' . $payment['pay_code'] . '.php');

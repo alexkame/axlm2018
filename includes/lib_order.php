@@ -628,7 +628,7 @@ function order_weight_price($order_id)
  * @param   bool    $is_gb_deposit  是否团购保证金（如果是，应付款金额只计算商品总额和支付费用，可以获得的积分取 $gift_integral）
  * @return  array
  */
-function order_fee($order, $goods, $consignee)
+function order_fee($order, $goods, $consignee, $pay_name='')
 {
     /* 初始化订单的扩展code */
     if (!isset($order['extension_code']))
@@ -703,10 +703,12 @@ function order_fee($order, $goods, $consignee)
     //{{{
     //是否有二次进货折扣
     //var_dump($order);
-    $pc_user_level =  $GLOBALS['db']->getOne("select level from ". $GLOBALS['ecs']->table('pc_user')." where uid = '".$_SESSION['user_id']."'"); 
-    if($pc_user_level > 2 && $zhuanqu_money){ //高级会员
-        $total['discount'] = $zhuanqu_money/2;
-    }
+	if($pay_name != '爱心币'){
+		$pc_user_level =  $GLOBALS['db']->getOne("select level from ". $GLOBALS['ecs']->table('pc_user')." where uid = '".$_SESSION['user_id']."'"); 
+		if($pc_user_level > 2 && $zhuanqu_money){ //高级会员
+			$total['discount'] = $zhuanqu_money/2;
+		}
+	}
     //}}}
     $total['discount_formated'] = price_format($total['discount'], false);
 
