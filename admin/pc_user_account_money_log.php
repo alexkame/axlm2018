@@ -37,10 +37,11 @@ if ($_REQUEST['act'] == 'default')
 		$bizhong = "account_jifen";
 	}
 	
-	$where = '';
+	$where = ' AND note != "分红纠正" ';
 	if($type){
 		$where .= " And type = '".$bizhong."' ";
 	}
+	
 	$sql = "select * from ".$ecs->table('pc_user_account_log')." where uid = $uid $where order by id desc ";
 	$lists = $db->getAll($sql);
 	if($lists){

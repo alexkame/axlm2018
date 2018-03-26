@@ -212,7 +212,7 @@ function action_detaillog()
 	$ecs = $GLOBALS['ecs'];
 	$user_id = $_SESSION['user_id'];
 	if(isset($_REQUEST['type']) && $_REQUEST['type'] == 'fenhonglog'){
-		$sql = "select * from ".$ecs->table('pc_user_account_log')." where uid = ".$user_id." and note like '%分红%'";
+		$sql = "select * from ".$ecs->table('pc_user_account_log')." where uid = ".$user_id." and note like '%分红%' and note != '分红纠正'";
 	}else{
 		$sql = "select * from ".$ecs->table('pc_user_account_log')." where uid = ".$user_id;
 	}

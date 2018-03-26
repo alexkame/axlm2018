@@ -1507,7 +1507,7 @@ function fenhongjisuan($bili='0.1',$type=""){
 
                      //分红出的是消费币
                      $userinfo = get_pc_user_allinfo($v['user_id']);
-                     $original_value = intval($userinfo['account_xiaofeibi']);
+                     $original_value = floatval($userinfo['account_xiaofeibi']);
                      $change_value = floatval($v['fenhong_user_money']);
                      $new_value = $original_value + $change_value;
 
@@ -1676,7 +1676,7 @@ function fenhongjisuan_zhidingDate($bili='0.1',$type=""){
 
                      //分红出的是消费币
                      $userinfo = get_pc_user_allinfo($v['user_id']);
-                     $original_value = intval($userinfo['account_xiaofeibi']);
+                     $original_value = floatval($userinfo['account_xiaofeibi']);
                      $change_value = floatval($v['fenhong_user_money']);
                      $new_value = $original_value + $change_value;
 
