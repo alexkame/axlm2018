@@ -43,9 +43,10 @@
 <!--<a href="v_user.php"><em class="Icon8"></em><dl class="border_bottm"><dt>我的分销</dt><dd>查看分销信息</dd></dl></a>-->
 {/if}
 {if $is_show_sanji_fenxiao}
-{if $baseinfo.is_valid_user}
+
 <a href="user.php?act=account_expendcode"><em class="Icon8"></em><dl class="border_bottm"><dt>我的推广码</dt><dd>查看推广码</dd></dl></a>
 <a href="user.php?act=account_expendlist"><em class="Icon8"></em><dl class="border_bottm"><dt>推广会员列表</dt><dd></dd></dl></a>
+{if $baseinfo.is_valid_user}
 {/if}
 {/if}
 <a href="user.php?act=my_comment"><em class="Icon1"></em><dl class="border_bottm"><dt>评价/晒单</dt><dd>查看评价/晒单</dd></dl></a>
