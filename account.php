@@ -30,6 +30,18 @@ $smarty->assign('fenxiao', $fenxiao);
 
 $back_act = '';
 
+/* 未登录处理 */
+if(empty($_SESSION['user_id']))
+{
+	$query_string = $_SERVER['QUERY_STRING'];
+	if(! empty($query_string))
+	{
+		$back_act = 'user.php?' . strip_tags($query_string);
+	}
+	$action = 'login';
+	header("Location: user.php?act=login");
+}
+
 // 不需要登录的操作或自己验证是否登录（如ajax处理）的act
 /**
 *	default : 默认首页
