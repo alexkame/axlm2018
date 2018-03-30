@@ -39,7 +39,7 @@ function check_zhuanqu_product($oid){
             $topcat = getTopCat($v['cat_id']);
 //            echo "[[[".$topcat."]]]";
             if($topcat == 367){//女性产品的大分类id
-                $goods_amount += $v['goods_price'];
+                $goods_amount += floatval($v['goods_price']) * intval($v['goods_number']);
             }
         }
         
