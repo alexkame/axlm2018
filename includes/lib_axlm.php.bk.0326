@@ -1453,7 +1453,7 @@ function fenhongjisuan($bili='0.1',$type=""){
         
     }elseif($type == 'fenhong'){ //给每个人符合条件的人分红
                 $cur_date = date("Y-m-d");
-                //$cur_date = "2018-06-04";
+                //$cur_date = "2017-09-19";
         
                 $fenhong_user_money = $bili; //每个分红点的金额
                 $sql = "select * from ".$ecs->table('pc_fenhong')." where fenhong_date='".$cur_date."'";
@@ -1505,7 +1505,7 @@ function fenhongjisuan($bili='0.1',$type=""){
 
                      //分红出的是消费币
                      $userinfo = get_pc_user_allinfo($v['user_id']);
-                     $original_value = floatval($userinfo['account_xiaofeibi']);
+                     $original_value = intval($userinfo['account_xiaofeibi']);
                      $change_value = floatval($v['fenhong_user_money']);
                      $new_value = $original_value + $change_value;
 
@@ -1552,21 +1552,12 @@ function fenhongjisuan($bili='0.1',$type=""){
 }
     
 function fenhongjisuan_zhidingDate($bili='0.1',$type=""){
-	//echo 'please open it';
-	//exit;
-	//echo $type;
-	//if($type != 'leiji'){
-	//	exit;
-	//}
+	exit;
     $ecs = $GLOBALS['ecs'];
     $db = $GLOBALS['db'];
-	$cur_date = date("Y-m-d");
-	$logtime = date("Y-m-d 00:00:00", strtotime("+1 days"));
-	
-	//$cur_date = "2018-07-06";
-	//$logtime = "2018-07-07 00:00:00";
-    
-	//累计分红到分红池
+	$cur_date = "2018-03-16";
+	$logtime = "2018-03-17 00:00:00";
+    //累计分红到分红池
     if($type == "leiji"){
          //计算已付款的所有订单，当天的付款，且付款时间是今日
         //$cur_date = date("Y-m-d");
@@ -1582,7 +1573,7 @@ function fenhongjisuan_zhidingDate($bili='0.1',$type=""){
         if($db->getOne("select id from ".$ecs->table('pc_day_amount_fenhong_log')." where fenhong_date = '".$cur_date."'")){
             //sys_msg('已存在【'.date('Y-m-d').'】分红记录', 0 ,$links);
 			$fenhong_cron_log = fopen("data/fenhong_cron_log.log","a+");
-            fwrite($fenhong_cron_log,"已存在【".date('Y-m-d')."】分红记录\r\n");
+            fwrite($fenhong_cron_log,"已存在【'.date('Y-m-d').'】分红记录\r\n");
 			fclose($fenhong_cron_log);
 			return 0;
         }
@@ -1595,7 +1586,7 @@ function fenhongjisuan_zhidingDate($bili='0.1',$type=""){
 		$trade_today = floatval($db->getOne($sumsql));
         if(!$trade_today){
 			$fenhong_cron_log = fopen("data/fenhong_cron_log.log","a+");
-            fwrite($fenhong_cron_log,"【".date('Y-m-d', strtotime($cur_date))."】交易额为0，不可分红\r\n");
+            fwrite($fenhong_cron_log,"【".date('Y-m-d')."】交易额为0，不可分红\r\n");
 			fclose($fenhong_cron_log);
             //sys_msg('交易额为0，不可分红', 0 ,$links);
             return 0;
@@ -1683,7 +1674,7 @@ function fenhongjisuan_zhidingDate($bili='0.1',$type=""){
 
                      //分红出的是消费币
                      $userinfo = get_pc_user_allinfo($v['user_id']);
-                     $original_value = floatval($userinfo['account_xiaofeibi']);
+                     $original_value = intval($userinfo['account_xiaofeibi']);
                      $change_value = floatval($v['fenhong_user_money']);
                      $new_value = $original_value + $change_value;
 

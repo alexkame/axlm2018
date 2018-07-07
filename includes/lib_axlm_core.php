@@ -27,7 +27,7 @@ function check_zhuanqu_product_byGid($gid){
 function check_zhuanqu_product($oid){
     $ecs = $GLOBALS['ecs'];
     $db = $GLOBALS['db'];
-    $sql = "select og.goods_id, og.goods_price,g.cat_id from ".$ecs->table('order_goods')." as og left join ".$ecs->table('goods')." as g on og.goods_id = g.goods_id  where order_id = $oid ";
+    $sql = "select og.goods_id, og.goods_price,g.cat_id, og.goods_number from ".$ecs->table('order_goods')." as og left join ".$ecs->table('goods')." as g on og.goods_id = g.goods_id  where order_id = $oid ";
 //    echo "<br>".$sql."<br>";
     $order_goods = $db->getAll($sql);
 //    echo mysql_error();
@@ -39,7 +39,8 @@ function check_zhuanqu_product($oid){
             $topcat = getTopCat($v['cat_id']);
 //            echo "[[[".$topcat."]]]";
             if($topcat == 367){//女性产品的大分类id
-                $goods_amount += floatval($v['goods_price']) * intval($v['goods_number']);
+                //$goods_amount += $v['goods_price'];
+				$goods_amount += floatval($v['goods_price']) * intval($v['goods_number']);
             }
         }
         

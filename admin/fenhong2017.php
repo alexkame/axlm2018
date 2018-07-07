@@ -240,6 +240,7 @@ elseif ($_REQUEST['act'] == 'daytrade')
 	
 	
     $cur_date = date("Y-m-d");
+	$cur_date = "2018-06-04";
     $sql = "select * from ".$ecs->table('pc_fenhong')." where fenhong_date='".$cur_date."'";
     $is_check = $db->getRow($sql);
 	

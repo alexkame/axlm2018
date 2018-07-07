@@ -85,6 +85,7 @@ if ($_REQUEST['act'] == 'dayfenhong')
 	
 	
     $cur_date = date("Y-m-d");
+	//$cur_date = "2018-06-20";
     $sql = "select * from ".$ecs->table('pc_fenhong')." where fenhong_date='".$cur_date."'";
     $is_check = $db->getRow($sql);
 	
@@ -100,8 +101,8 @@ if ($_REQUEST['act'] == 'dayfenhong')
 		//if(date("H") < 23){
 		//	echo  date("Y-m-d H:i:s")."还未到执行时间\r\n";
 		//}else{
-			fenhongjisuan($fenhong_user_money,"fenhong");
-			//fenhongjisuan_zhidingDate($fenhong_user_money,"fenhong");
+			//fenhongjisuan($fenhong_user_money,"fenhong");
+			fenhongjisuan_zhidingDate($fenhong_user_money,"fenhong");
 			echo date("Y-m-d H:i:s")." 执行分红计算----> 1 \r\n ";
 		//}
 	}
